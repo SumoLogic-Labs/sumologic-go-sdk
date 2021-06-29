@@ -1,7 +1,7 @@
 package cip
 
 import (
-	"github.com/wizedkyle/sumologic-go-sdk/v2"
+	"github.com/wizedkyle/sumologic-go-sdk/version"
 )
 
 func UserAgent() string {
