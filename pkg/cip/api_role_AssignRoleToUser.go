@@ -3,6 +3,7 @@ package cip
 import (
 	"context"
 	"fmt"
+	"github.com/wizedkyle/sumologic-go-sdk/v2/pkg/cip/types"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -11,24 +12,19 @@ import (
 
 type RoleManagementApiService service
 
-// AssignRoleToUser
-//
-//*/
-/*
-RoleManagementApiService Assign a role to a user.
-Assign a role to a user in the organization.
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param roleId Identifier of the role to assign.
- * @param userId Identifier of the user to assign the role to.
-@return RoleModel
-*/
-func (a *RoleManagementApiService) AssignRoleToUser(ctx context.Context, roleId string, userId string) (RoleModel, *http.Response, error) {
+// AssignRoleToUser Assign a role to a user.
+// Assign a role to a user in the organization.
+//  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+//  * @param roleId Identifier of the role to assign.
+//  * @param userId Identifier of the user to assign the role to.
+// @return RoleModel
+func (a *RoleManagementApiService) AssignRoleToUser(ctx context.Context, roleId string, userId string) (types.RoleModel, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Put")
 		localVarPostBody    interface{}
 		localVarFileName    string
 		localVarFileBytes   []byte
-		localVarReturnValue RoleModel
+		localVarReturnValue types.RoleModel
 	)
 
 	// create path and map variables
@@ -87,7 +83,7 @@ func (a *RoleManagementApiService) AssignRoleToUser(ctx context.Context, roleId 
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
-			var v RoleModel
+			var v types.RoleModel
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -97,7 +93,7 @@ func (a *RoleManagementApiService) AssignRoleToUser(ctx context.Context, roleId 
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		if localVarHttpResponse.StatusCode == 0 {
-			var v ErrorResponse
+			var v types.ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
