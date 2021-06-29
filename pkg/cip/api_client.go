@@ -74,9 +74,9 @@ func (c *Configuration) AddDefaultHeader(key string, value string) {
 
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
-		BasePath:      "", //TODO: Implemet a method to check for base path
+		BasePath:      "",
 		DefaultHeader: make(map[string]string),
-		UserAgent:     "Swagger-Codegen/1.0.0/go",
+		UserAgent:     UserAgent(),
 	}
 	return cfg
 }
