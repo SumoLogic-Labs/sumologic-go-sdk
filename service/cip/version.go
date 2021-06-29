@@ -1,13 +1,12 @@
 package cip
 
-import (
-	"github.com/wizedkyle/sumologic-go-sdk/version"
-)
+// Number
+const number = "Dev"
 
 func UserAgent() string {
 	return "sumologic-go-sdk/" + Version()
 }
 
 func Version() string {
-	return version.Number
+	return number
 }
