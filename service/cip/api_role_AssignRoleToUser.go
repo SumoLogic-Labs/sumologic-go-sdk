@@ -24,6 +24,7 @@ func (a *RoleManagementApiService) AssignRoleToUser(roleId string, userId string
 
 	// create path and map variables
 	localVarPath := a.client.Cfg.BasePath + "/v1/roles/{roleId}/users/{userId}"
+	fmt.Println(localVarPath)
 	localVarPath = strings.Replace(localVarPath, "{"+"roleId"+"}", fmt.Sprintf("%v", roleId), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", fmt.Sprintf("%v", userId), -1)
 
