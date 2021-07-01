@@ -2,7 +2,7 @@ package cip
 
 import (
 	"bytes"
-	"context"
+	"encoding/base64"
 	"encoding/json"
 	"encoding/xml"
 	"errors"
@@ -17,8 +17,6 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
-	"time"
-	"unicode/utf8"
 )
 
 var (
@@ -38,7 +36,7 @@ type contextKey string
 // APIClient manages communication with the Sumo Logic API API v1.0.0
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
-	cfg    *Configuration
+	Cfg    *Configuration
 	common service // Reuse a single struct instead of allocating one for each service on the heap.
 
 	// API Services
@@ -47,17 +45,18 @@ type APIClient struct {
 
 // BasicAuth provides basic http authentication to a request passed via context using ContextBasicAuth
 type BasicAuth struct {
-	UserName string `json:"userName,omitempty"`
-	Password string `json:"password,omitempty"`
+	AccessId  string `json:"userName,omitempty"`
+	AccessKey string `json:"password,omitempty"`
 }
 
 type Configuration struct {
-	BasePath      string            `json:"basePath,omitempty"`
-	Host          string            `json:"host,omitempty"`
-	Scheme        string            `json:"scheme,omitempty"`
-	DefaultHeader map[string]string `json:"defaultHeader,omitempty"`
-	UserAgent     string            `json:"userAgent,omitempty"`
-	HTTPClient    *http.Client
+	Authentication BasicAuth         `json:"authentication"`
+	BasePath       string            `json:"basePath,omitempty"`
+	Host           string            `json:"host,omitempty"`
+	Scheme         string            `json:"scheme,omitempty"`
+	DefaultHeader  map[string]string `json:"defaultHeader,omitempty"`
+	UserAgent      string            `json:"userAgent,omitempty"`
+	HTTPClient     *http.Client
 }
 
 type service struct {
@@ -72,9 +71,13 @@ func (c *Configuration) AddDefaultHeader(key string, value string) {
 	c.DefaultHeader[key] = value
 }
 
+func basicAuth(accessId string, accessKey string) string {
+	accessCredentials := accessId + ":" + accessKey
+	return base64.StdEncoding.EncodeToString([]byte(accessCredentials))
+}
+
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
-		BasePath:      "",
 		DefaultHeader: make(map[string]string),
 		UserAgent:     UserAgent(),
 	}
@@ -153,17 +156,16 @@ func parameterToString(obj interface{}, collectionFormat string) string {
 
 // callAPI do the request.
 func (c *APIClient) callAPI(request *http.Request) (*http.Response, error) {
-	return c.cfg.HTTPClient.Do(request)
+	return c.Cfg.HTTPClient.Do(request)
 }
 
 // Change base path to allow switching to mocks
 func (c *APIClient) ChangeBasePath(path string) {
-	c.cfg.BasePath = path
+	c.Cfg.BasePath = path
 }
 
 // prepareRequest build the request
 func (c *APIClient) prepareRequest(
-	ctx context.Context,
 	path string, method string,
 	postBody interface{},
 	headerParams map[string]string,
@@ -275,24 +277,15 @@ func (c *APIClient) prepareRequest(
 	}
 
 	// Override request host, if applicable
-	if c.cfg.Host != "" {
-		localVarRequest.Host = c.cfg.Host
+	if c.Cfg.Host != "" {
+		localVarRequest.Host = c.Cfg.Host
 	}
 
 	// Add the user agent to the request.
-	localVarRequest.Header.Add("User-Agent", c.cfg.UserAgent)
+	localVarRequest.Header.Add("User-Agent", c.Cfg.UserAgent)
+	localVarRequest.Header.Add("Authorization", "Basic "+basicAuth(c.Cfg.Authentication.AccessId, c.Cfg.Authentication.AccessKey))
 
-	if ctx != nil {
-		// add context to the request
-		localVarRequest = localVarRequest.WithContext(ctx)
-
-		// Basic HTTP Authentication
-		if auth, ok := ctx.Value(ContextBasicAuth).(BasicAuth); ok {
-			localVarRequest.SetBasicAuth(auth.UserName, auth.Password)
-		}
-	}
-
-	for header, value := range c.cfg.DefaultHeader {
+	for header, value := range c.Cfg.DefaultHeader {
 		localVarRequest.Header.Add(header, value)
 	}
 
@@ -329,11 +322,6 @@ func addFile(w *multipart.Writer, fieldName, path string) error {
 	_, err = io.Copy(part, file)
 
 	return err
-}
-
-// Prevent trying to import "fmt"
-func reportError(format string, a ...interface{}) error {
-	return fmt.Errorf(format, a...)
 }
 
 // Set request body from an interface{}
@@ -386,59 +374,6 @@ func detectContentType(body interface{}) string {
 	}
 
 	return contentType
-}
-
-// Ripped from https://github.com/gregjones/httpcache/blob/master/httpcache.go
-type cacheControl map[string]string
-
-func parseCacheControl(headers http.Header) cacheControl {
-	cc := cacheControl{}
-	ccHeader := headers.Get("Cache-Control")
-	for _, part := range strings.Split(ccHeader, ",") {
-		part = strings.Trim(part, " ")
-		if part == "" {
-			continue
-		}
-		if strings.ContainsRune(part, '=') {
-			keyval := strings.Split(part, "=")
-			cc[strings.Trim(keyval[0], " ")] = strings.Trim(keyval[1], ",")
-		} else {
-			cc[part] = ""
-		}
-	}
-	return cc
-}
-
-// CacheExpires helper function to determine remaining time before repeating a request.
-func CacheExpires(r *http.Response) time.Time {
-	// Figure out when the cache expires.
-	var expires time.Time
-	now, err := time.Parse(time.RFC1123, r.Header.Get("date"))
-	if err != nil {
-		return time.Now()
-	}
-	respCacheControl := parseCacheControl(r.Header)
-
-	if maxAge, ok := respCacheControl["max-age"]; ok {
-		lifetime, err := time.ParseDuration(maxAge + "s")
-		if err != nil {
-			expires = now
-		}
-		expires = now.Add(lifetime)
-	} else {
-		expiresHeader := r.Header.Get("Expires")
-		if expiresHeader != "" {
-			expires, err = time.Parse(time.RFC1123, expiresHeader)
-			if err != nil {
-				expires = now
-			}
-		}
-	}
-	return expires
-}
-
-func strlen(s string) int {
-	return utf8.RuneCountInString(s)
 }
 
 // GenericSwaggerError Provides access to the body, error and model on returned errors.
