@@ -40,7 +40,8 @@ type APIClient struct {
 	common service // Reuse a single struct instead of allocating one for each service on the heap.
 
 	// API Services
-	RoleManagementApi *RoleManagementApiService
+	FolderManagementApi *FolderManagementApiService
+	RoleManagementApi   *RoleManagementApiService
 }
 
 // BasicAuth provides basic http authentication to a request passed via context using ContextBasicAuth
