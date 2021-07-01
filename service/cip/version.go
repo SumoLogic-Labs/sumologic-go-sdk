@@ -4,9 +4,9 @@ package cip
 const number = "Dev"
 
 func UserAgent() string {
-	return "sumologic-go-sdk/" + Version()
+	return "sumologic-go-sdk/" + version()
 }
 
-func Version() string {
+func version() string {
 	return number
 }

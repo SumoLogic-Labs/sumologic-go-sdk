@@ -1,7 +1,7 @@
 package cip
 
 import (
-	"fmt"
+	"context"
 	"github.com/wizedkyle/sumologic-go-sdk/service/cip/types"
 	"io/ioutil"
 	"net/http"
@@ -9,23 +9,19 @@ import (
 	"strings"
 )
 
-type RoleManagementApiService service
-
-// AssignRoleToUser
-// Assigns a role to a user in the organization.
-func (a *RoleManagementApiService) AssignRoleToUser(roleId string, userId string) (types.RoleModel, *http.Response, error) {
+// GetPersonalFolder Get Personal folder.
+// Get the personal folder of the current user.
+func (a *FolderManagementApiService) GetPersonalFolder(ctx context.Context) (types.Folder, *http.Response, error) {
 	var (
-		localVarHttpMethod  = strings.ToUpper("Put")
+		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}
 		localVarFileName    string
 		localVarFileBytes   []byte
-		localVarReturnValue types.RoleModel
+		localVarReturnValue types.Folder
 	)
 
 	// create path and map variables
-	localVarPath := a.client.Cfg.BasePath + "/v1/roles/{roleId}/users/{userId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"roleId"+"}", fmt.Sprintf("%v", roleId), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", fmt.Sprintf("%v", userId), -1)
+	localVarPath := a.client.Cfg.BasePath + "/v2/content/folders/personal"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -78,7 +74,7 @@ func (a *RoleManagementApiService) AssignRoleToUser(roleId string, userId string
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
-			var v types.RoleModel
+			var v types.Folder
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
