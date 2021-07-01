@@ -1,7 +1,6 @@
 package cip
 
 import (
-	"context"
 	"github.com/wizedkyle/sumologic-go-sdk/service/cip/types"
 	"io/ioutil"
 	"net/http"
@@ -11,7 +10,7 @@ import (
 
 // GetPersonalFolder Get Personal folder.
 // Get the personal folder of the current user.
-func (a *FolderManagementApiService) GetPersonalFolder(ctx context.Context) (types.Folder, *http.Response, error) {
+func (a *FolderManagementApiService) GetPersonalFolder() (types.Folder, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}
