@@ -41,7 +41,7 @@ type APIClient struct {
 
 	// API Services
 	FolderManagementApi *FolderManagementApiService
-	RoleManagementApi   RoleManagementApiService
+	RoleManagementApi   *RoleManagementApiService
 }
 
 // BasicAuth provides basic http authentication to a request passed via context using ContextBasicAuth
@@ -156,17 +156,17 @@ func parameterToString(obj interface{}, collectionFormat string) string {
 }
 
 // callAPI do the request.
-func (c *APIClient) callAPI(request *http.Request) (*http.Response, error) {
-	return c.Cfg.HTTPClient.Do(request)
+func (a *APIClient) callAPI(request *http.Request) (*http.Response, error) {
+	return a.Cfg.HTTPClient.Do(request)
 }
 
 // Change base path to allow switching to mocks
-func (c *APIClient) ChangeBasePath(path string) {
-	c.Cfg.BasePath = path
+func (a *APIClient) ChangeBasePath(path string) {
+	a.Cfg.BasePath = path
 }
 
 // prepareRequest build the request
-func (c *APIClient) prepareRequest(
+func (a *APIClient) prepareRequest(
 	path string, method string,
 	postBody interface{},
 	headerParams map[string]string,
@@ -278,22 +278,22 @@ func (c *APIClient) prepareRequest(
 	}
 
 	// Override request host, if applicable
-	if c.Cfg.Host != "" {
-		localVarRequest.Host = c.Cfg.Host
+	if a.Cfg.Host != "" {
+		localVarRequest.Host = a.Cfg.Host
 	}
 
 	// Add the user agent to the request.
-	localVarRequest.Header.Add("User-Agent", c.Cfg.UserAgent)
-	localVarRequest.Header.Add("Authorization", "Basic "+basicAuth(c.Cfg.Authentication.AccessId, c.Cfg.Authentication.AccessKey))
+	localVarRequest.Header.Add("User-Agent", a.Cfg.UserAgent)
+	localVarRequest.Header.Add("Authorization", "Basic "+basicAuth(a.Cfg.Authentication.AccessId, a.Cfg.Authentication.AccessKey))
 
-	for header, value := range c.Cfg.DefaultHeader {
+	for header, value := range a.Cfg.DefaultHeader {
 		localVarRequest.Header.Add(header, value)
 	}
 
 	return localVarRequest, nil
 }
 
-func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err error) {
+func (a *APIClient) decode(v interface{}, b []byte, contentType string) (err error) {
 	if strings.Contains(contentType, "application/xml") {
 		if err = xml.Unmarshal(b, v); err != nil {
 			return err

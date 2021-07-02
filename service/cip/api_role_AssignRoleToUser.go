@@ -13,7 +13,7 @@ type RoleManagementApiService service
 
 // AssignRoleToUser
 // Assigns a role to a user in the organization.
-func (a RoleManagementApiService) AssignRoleToUser(roleId string, userId string) (types.RoleModel, *http.Response, error) {
+func (a *APIClient) AssignRoleToUser(roleId string, userId string) (types.RoleModel, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Put")
 		localVarPostBody    interface{}
@@ -24,7 +24,7 @@ func (a RoleManagementApiService) AssignRoleToUser(roleId string, userId string)
 
 	fmt.Println(a)
 	// create path and map variables
-	localVarPath := a.client.Cfg.BasePath + "/v1/roles/{roleId}/users/{userId}"
+	localVarPath := a.Cfg.BasePath + "/v1/roles/{roleId}/users/{userId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"roleId"+"}", fmt.Sprintf("%v", roleId), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", fmt.Sprintf("%v", userId), -1)
 
@@ -49,12 +49,12 @@ func (a RoleManagementApiService) AssignRoleToUser(roleId string, userId string)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	r, err := a.client.prepareRequest(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	r, err := a.prepareRequest(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHttpResponse, err := a.client.callAPI(r)
+	localVarHttpResponse, err := a.callAPI(r)
 	if err != nil || localVarHttpResponse == nil {
 		return localVarReturnValue, localVarHttpResponse, err
 	}
@@ -67,7 +67,7 @@ func (a RoleManagementApiService) AssignRoleToUser(roleId string, userId string)
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		err = a.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
@@ -80,7 +80,7 @@ func (a RoleManagementApiService) AssignRoleToUser(roleId string, userId string)
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v types.RoleModel
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
@@ -90,7 +90,7 @@ func (a RoleManagementApiService) AssignRoleToUser(roleId string, userId string)
 		}
 		if localVarHttpResponse.StatusCode == 0 {
 			var v types.ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
