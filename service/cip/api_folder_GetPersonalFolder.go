@@ -8,9 +8,12 @@ import (
 	"strings"
 )
 
-// GetPersonalFolder Get Personal folder.
-// Get the personal folder of the current user.
-func (a *FolderManagementApiService) GetPersonalFolder() (types.Folder, *http.Response, error) {
+/*
+GetPersonalFolder
+Get the personal folder of the current user.
+Returns types.Folder
+*/
+func (a *APIClient) GetPersonalFolder() (types.Folder, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}
@@ -20,7 +23,7 @@ func (a *FolderManagementApiService) GetPersonalFolder() (types.Folder, *http.Re
 	)
 
 	// create path and map variables
-	localVarPath := a.client.Cfg.BasePath + "/v2/content/folders/personal"
+	localVarPath := a.Cfg.BasePath + "/v2/content/folders/personal"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -43,12 +46,12 @@ func (a *FolderManagementApiService) GetPersonalFolder() (types.Folder, *http.Re
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	r, err := a.client.prepareRequest(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	r, err := a.prepareRequest(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHttpResponse, err := a.client.callAPI(r)
+	localVarHttpResponse, err := a.callAPI(r)
 	if err != nil || localVarHttpResponse == nil {
 		return localVarReturnValue, localVarHttpResponse, err
 	}
@@ -61,7 +64,7 @@ func (a *FolderManagementApiService) GetPersonalFolder() (types.Folder, *http.Re
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		err = a.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
@@ -74,7 +77,7 @@ func (a *FolderManagementApiService) GetPersonalFolder() (types.Folder, *http.Re
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v types.Folder
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
@@ -84,7 +87,7 @@ func (a *FolderManagementApiService) GetPersonalFolder() (types.Folder, *http.Re
 		}
 		if localVarHttpResponse.StatusCode == 0 {
 			var v types.ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
