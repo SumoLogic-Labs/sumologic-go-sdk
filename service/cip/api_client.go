@@ -41,7 +41,6 @@ type APIClient struct {
 
 	// API Services
 	FolderManagementApi *FolderManagementApiService
-	RoleManagementApi   *RoleManagementApiService
 }
 
 // BasicAuth provides basic http authentication to a request passed via context using ContextBasicAuth
