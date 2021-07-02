@@ -13,7 +13,7 @@ type RoleManagementApiService service
 
 // AssignRoleToUser
 // Assigns a role to a user in the organization.
-func (a *RoleManagementApiService) AssignRoleToUser(roleId string, userId string) (types.RoleModel, *http.Response, error) {
+func (a RoleManagementApiService) AssignRoleToUser(roleId string, userId string) (types.RoleModel, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Put")
 		localVarPostBody    interface{}
