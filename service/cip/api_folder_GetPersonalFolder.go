@@ -8,8 +8,11 @@ import (
 	"strings"
 )
 
-// GetPersonalFolder Get Personal folder.
-// Get the personal folder of the current user.
+/*
+GetPersonalFolder
+Get the personal folder of the current user.
+Returns types.Folder
+*/
 func (a *APIClient) GetPersonalFolder() (types.Folder, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")

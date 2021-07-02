@@ -9,9 +9,12 @@ import (
 	"strings"
 )
 
-// DeleteRole
-// Delete a role with the given identifier from the organization.
-func (a *RoleManagementApiService) DeleteRole(id string) (*http.Response, error) {
+/*
+DeleteRole
+Delete a role with the given identifier from the organization.
+ * @param id Identifier of the role to delete.
+*/
+func (a *APIClient) DeleteRole(id string) (*http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Delete")
 		localVarPostBody   interface{}
@@ -20,7 +23,7 @@ func (a *RoleManagementApiService) DeleteRole(id string) (*http.Response, error)
 	)
 
 	// create path and map variables
-	localVarPath := a.client.Cfg.BasePath + "/v1/roles/{id}"
+	localVarPath := a.Cfg.BasePath + "/v1/roles/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -44,12 +47,12 @@ func (a *RoleManagementApiService) DeleteRole(id string) (*http.Response, error)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	r, err := a.client.prepareRequest(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	r, err := a.prepareRequest(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, err
 	}
 
-	localVarHttpResponse, err := a.client.callAPI(r)
+	localVarHttpResponse, err := a.callAPI(r)
 	if err != nil || localVarHttpResponse == nil {
 		return localVarHttpResponse, err
 	}
@@ -67,7 +70,7 @@ func (a *RoleManagementApiService) DeleteRole(id string) (*http.Response, error)
 		}
 		if localVarHttpResponse.StatusCode == 0 {
 			var v types.ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarHttpResponse, newErr

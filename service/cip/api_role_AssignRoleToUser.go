@@ -9,10 +9,8 @@ import (
 	"strings"
 )
 
-type RoleManagementApiService service
-
 /*
-AssignRoleToUser Assign a role to a user.
+AssignRoleToUser
 Assigns a role to a user in the organization.
  * @param roleId Identifier of the role to assign.
  * @param userId Identifier of the user to assign the role to.
