@@ -11,8 +11,13 @@ import (
 
 type RoleManagementApiService service
 
-// AssignRoleToUser
-// Assigns a role to a user in the organization.
+/*
+AssignRoleToUser Assign a role to a user.
+Assigns a role to a user in the organization.
+ * @param roleId Identifier of the role to assign.
+ * @param userId Identifier of the user to assign the role to.
+Returns types.RoleModel
+*/
 func (a *APIClient) AssignRoleToUser(roleId string, userId string) (types.RoleModel, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Put")
