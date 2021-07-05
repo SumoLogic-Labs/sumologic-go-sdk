@@ -38,9 +38,6 @@ type contextKey string
 type APIClient struct {
 	Cfg    *Configuration
 	common service // Reuse a single struct instead of allocating one for each service on the heap.
-
-	// API Services
-	FolderManagementApi *FolderManagementApiService
 }
 
 // BasicAuth provides basic http authentication to a request passed via context using ContextBasicAuth

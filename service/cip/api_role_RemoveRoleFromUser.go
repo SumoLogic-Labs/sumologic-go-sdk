@@ -10,11 +10,12 @@ import (
 )
 
 /*
-DeleteRole
-Delete a role with the given identifier from the organization.
- * id - Identifier of the role to delete.
+RemoveRoleFromUser
+Remove a role from a user in the organization.
+ * roleId - Identifier of the role to delete.
+ * userId - Identifier of the user to remove the role from.
 */
-func (a *APIClient) DeleteRole(id string) (*http.Response, error) {
+func (a *APIClient) RemoveRoleFromUser(roleId string, userId string) (*http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Delete")
 		localVarPostBody   interface{}
@@ -23,8 +24,9 @@ func (a *APIClient) DeleteRole(id string) (*http.Response, error) {
 	)
 
 	// create path and map variables
-	localVarPath := a.Cfg.BasePath + "/v1/roles/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
+	localVarPath := a.Cfg.BasePath + "/v1/roles/{roleId}/users/{userId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"roleId"+"}", fmt.Sprintf("%v", roleId), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", fmt.Sprintf("%v", userId), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

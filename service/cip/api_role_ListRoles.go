@@ -1,7 +1,6 @@
 package cip
 
 import (
-	"fmt"
 	"github.com/wizedkyle/sumologic-go-sdk/service/cip/types"
 	"io/ioutil"
 	"net/http"
@@ -10,30 +9,43 @@ import (
 )
 
 /*
-AssignRoleToUser
-Assigns a role to a user in the organization.
- * roleId - Identifier of the role to assign.
- * userId - Identifier of the user to assign the role to.
-Returns types.RoleModel
+ListRoles
+Get a list of all the roles in the organization. The response is paginated with a default limit of 100 roles per page.
+ * optional - nil or *types.ListRolesOpts - Optional Parameters:
+  * Limit (optional.Int32) -  Limit the number of roles returned in the response. The number of roles returned may be less than the &#x60;limit&#x60;.
+  * Token (optional.String) -  Continuation token to get the next page of results. A page object with the next continuation token is returned in the response body. Subsequent GET requests should specify the continuation token to get the next page of results. Token is set to null when no more pages are left.
+  * SortBy (optional.String) -  Sort the list of roles by the name field.
+  * Name (optional.String) -  Only return roles matching the given name.
+Returns types.ListRoleModelsResponse
 */
-func (a *APIClient) AssignRoleToUser(roleId string, userId string) (types.RoleModel, *http.Response, error) {
+func (a *APIClient) ListRoles(localVarOptionals *types.ListRolesOpts) (types.ListRoleModelsResponse, *http.Response, error) {
 	var (
-		localVarHttpMethod  = strings.ToUpper("Put")
+		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}
 		localVarFileName    string
 		localVarFileBytes   []byte
-		localVarReturnValue types.RoleModel
+		localVarReturnValue types.ListRoleModelsResponse
 	)
 
 	// create path and map variables
-	localVarPath := a.Cfg.BasePath + "/v1/roles/{roleId}/users/{userId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"roleId"+"}", fmt.Sprintf("%v", roleId), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", fmt.Sprintf("%v", userId), -1)
+	localVarPath := a.Cfg.BasePath + "/v1/roles"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.Limit.IsSet() {
+		localVarQueryParams.Add("limit", parameterToString(localVarOptionals.Limit.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Token.IsSet() {
+		localVarQueryParams.Add("token", parameterToString(localVarOptionals.Token.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.SortBy.IsSet() {
+		localVarQueryParams.Add("sortBy", parameterToString(localVarOptionals.SortBy.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Name.IsSet() {
+		localVarQueryParams.Add("name", parameterToString(localVarOptionals.Name.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
 
@@ -81,7 +93,7 @@ func (a *APIClient) AssignRoleToUser(roleId string, userId string) (types.RoleMo
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
-			var v types.RoleModel
+			var v types.ListRoleModelsResponse
 			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
