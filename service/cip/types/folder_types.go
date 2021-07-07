@@ -1,5 +1,7 @@
 package types
 
+import "github.com/antihax/optional"
+
 type Folder struct {
 	// Identifier of the content item.
 	Id string `json:"id"`
@@ -15,4 +17,40 @@ type Folder struct {
 	Description string `json:"description,omitempty"`
 	// A list of the content items.
 	Children []Content `json:"children,omitempty"`
+}
+
+type FolderDefinition struct {
+	// The name of the folder.
+	Name string `json:"name"`
+	// The description of the folder.
+	Description string `json:"description,omitempty"`
+	// The identifier of the parent folder.
+	ParentId string `json:"parentId"`
+}
+
+type FolderManagementApiCreateFolderOpts struct {
+	IsAdminMode optional.String
+}
+
+type FolderManagementApiGetAdminRecommendedFolderAsyncOpts struct {
+	IsAdminMode optional.String
+}
+
+type FolderManagementApiGetFolderOpts struct {
+	IsAdminMode optional.String
+}
+
+type FolderManagementApiGetGlobalFolderAsyncOpts struct {
+	IsAdminMode optional.String
+}
+
+type FolderManagementApiUpdateFolderOpts struct {
+	IsAdminMode optional.String
+}
+
+type UpdateFolderRequest struct {
+	// The name of the folder.
+	Name string `json:"name"`
+	// The description of the folder.
+	Description string `json:"description,omitempty"`
 }
