@@ -22,3 +22,8 @@ type Content struct {
 	// List of permissions the user has on the content item.
 	Permissions []string `json:"permissions"`
 }
+
+type ContentList struct {
+	// A list of the content items.
+	Data []Content `json:"data"`
+}
