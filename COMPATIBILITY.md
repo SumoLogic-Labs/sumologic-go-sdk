@@ -8,7 +8,7 @@ You can find further information about the Sumo Logic APIs in their [documentati
 
 | API | Status | Notes |
 | --- | --- | --- |
-| Access Keys | | |
+| Access Keys | :white_check_mark: | |
 | Account | | |
 | Apps (Beta) | | |
 | Archive Ingestion | | |
@@ -18,7 +18,7 @@ You can find further information about the Sumo Logic APIs in their [documentati
 | Dynamic Parsing | | |
 | Field Extraction Rules | | |
 | Field Management | | |
-| Folders | | |
+| Folders | :white_check_mark: | |
 | Health Events | | |
 | Ingest Budgets | | |
 | Ingest Budgets v2 | | |
@@ -27,7 +27,7 @@ You can find further information about the Sumo Logic APIs in their [documentati
 | Partitions | | |
 | Password Policy | | |
 | Permissions | | |
-| Roles | | |
+| Roles | :white_check_mark: | |
 | SAML Configuration | | |
 | Scheduled Views | | |
 | Service Allowlist | | |

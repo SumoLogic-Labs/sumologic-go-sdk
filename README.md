@@ -56,6 +56,10 @@ func main() {
     }
 }
 ```
+## Compatibility
+
+You can find a list of API endpoints and sources that the sumologic-go-sdk supports in the [supported capabilities](COMPATIBILITY.md) documentation.
+
 ## Contributing
 
 The Sumo Logic Go SDK uses GitHub [Issues](https://github.com/wizedkyle/sumologic-go-sdk/issues) to report and track 
