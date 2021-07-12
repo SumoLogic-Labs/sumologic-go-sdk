@@ -9,7 +9,7 @@ You can find further information about the Sumo Logic APIs in their [documentati
 | API | Status | Notes |
 | --- | --- | --- |
 | Access Keys | :white_check_mark: | |
-| Account | | |
+| Account | :white_check_mark: | |
 | Apps (Beta) | | |
 | Archive Ingestion | | |
 | Content | | |
@@ -33,4 +33,4 @@ You can find further information about the Sumo Logic APIs in their [documentati
 | Service Allowlist | | |
 | Sources | | |
 | Tokens | | |
-| Users | | |
+| Users | :white_check_mark: | |
