@@ -32,5 +32,5 @@ You can find further information about the Sumo Logic APIs in their [documentati
 | Scheduled Views | | |
 | Service Allowlist | | |
 | Sources | | |
-| Tokens | | |
+| Tokens | :white_check_mark: | |
 | Users | :white_check_mark: | |
