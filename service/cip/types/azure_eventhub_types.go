@@ -2,7 +2,7 @@ package types
 
 type CreateEventHubSourceRequest struct {
 	// ApiVersion version of the api
-	ApiVersion string `json:"api.version"`
+	ApiVersion string `json:"api.version,omitempty"`
 	// Source type of source
 	Source EventHubSource `json:"source"`
 }
