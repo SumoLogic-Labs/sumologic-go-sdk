@@ -3,31 +3,31 @@ package cip
 import (
 	"fmt"
 	"github.com/wizedkyle/sumologic-go-sdk/service/cip/types"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
 )
 
 /*
-CreateArchiveJob
-Create an ingestion job to pull data from your S3 bucket.
- * body - The definition of the ingestion job to create.
- * sourceId - The identifier of the Archive Source for which the job is to be added.
-Returns types.ArchiveJob
+CreateEventHubSource
+Create an Azure Event Hub source.
+ * body - The definition of the Event Hub source.
+ * collectorId - The identifier of the Sumo Logic collector to assign the source to.
+Returns types.EventHubModel
 */
-func (a *APIClient) CreateArchiveJob(body types.CreateArchiveJobRequest, sourceId string) (types.ArchiveJob, *http.Response, error) {
+func (a *APIClient) CreateEventHubSource(body types.CreateEventHubSourceDefinition, collectorId string) (types.EventHubModel, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Post")
 		localVarPostBody    interface{}
 		localVarFileName    string
 		localVarFileBytes   []byte
-		localVarReturnValue types.ArchiveJob
+		localVarReturnValue types.EventHubModel
 	)
 
-	// create path and map variables
-	localVarPath := a.Cfg.BasePath + "/v1/archive/{sourceId}/jobs"
-	localVarPath = strings.Replace(localVarPath, "{"+"sourceId"+"}", fmt.Sprintf("%v", sourceId), -1)
+	//create path and map variables
+	localVarPath := a.Cfg.BasePath + "/v1/collectors{collectorId}/sources"
+	localVarPath = strings.Replace(localVarPath, "{"+"collectorId"+"}", fmt.Sprintf("#{collectorId}"), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -62,14 +62,14 @@ func (a *APIClient) CreateArchiveJob(body types.CreateArchiveJobRequest, sourceI
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHttpResponse.Body)
 	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode < 300 {
-		// If we succeed, return the data, otherwise pass on to decode error.
+		// If we succeed, return the data, otherwise pass on to decode error
 		err = a.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
@@ -82,7 +82,7 @@ func (a *APIClient) CreateArchiveJob(body types.CreateArchiveJobRequest, sourceI
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
-			var v types.ArchiveJob
+			var v types.EventHubModel
 			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
