@@ -28,7 +28,6 @@ func (a *APIClient) CreateEventHubSource(body types.CreateEventHubSourceRequest,
 	//create path and map variables
 	localVarPath := a.Cfg.BasePath + "/v1/collectors/{collectorId}/sources"
 	localVarPath = strings.Replace(localVarPath, "{"+"collectorId"+"}", fmt.Sprintf("%v", collectorId), -1)
-	fmt.Println(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -65,6 +64,7 @@ func (a *APIClient) CreateEventHubSource(body types.CreateEventHubSourceRequest,
 
 	localVarBody, err := io.ReadAll(localVarHttpResponse.Body)
 	localVarHttpResponse.Body.Close()
+	fmt.Println(string(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
 	}
