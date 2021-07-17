@@ -16,7 +16,7 @@ Create an Azure Event Hub source.
  * collectorId - The identifier of the Sumo Logic collector to assign the source to.
 Returns types.EventHubModel
 */
-func (a *APIClient) CreateEventHubSource(body types.CreateEventHubSourceDefinition, collectorId string) (types.EventHubModel, *http.Response, error) {
+func (a *APIClient) CreateEventHubSource(body types.CreateEventHubSourceRequest, collectorId string) (types.EventHubModel, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Post")
 		localVarPostBody    interface{}
@@ -28,6 +28,7 @@ func (a *APIClient) CreateEventHubSource(body types.CreateEventHubSourceDefiniti
 	//create path and map variables
 	localVarPath := a.Cfg.BasePath + "/v1/collectors/{collectorId}/sources"
 	localVarPath = strings.Replace(localVarPath, "{"+"collectorId"+"}", fmt.Sprintf("%v", collectorId), -1)
+	fmt.Println(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
