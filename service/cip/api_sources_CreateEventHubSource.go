@@ -64,7 +64,6 @@ func (a *APIClient) CreateEventHubSource(body types.CreateEventHubSourceRequest,
 
 	localVarBody, err := io.ReadAll(localVarHttpResponse.Body)
 	localVarHttpResponse.Body.Close()
-	fmt.Println(string(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
 	}
