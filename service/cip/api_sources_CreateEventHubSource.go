@@ -26,7 +26,7 @@ func (a *APIClient) CreateEventHubSource(body types.CreateEventHubSourceDefiniti
 	)
 
 	//create path and map variables
-	localVarPath := a.Cfg.BasePath + "/v1/collectors{collectorId}/sources"
+	localVarPath := a.Cfg.BasePath + "/v1/collectors/{collectorId}/sources"
 	localVarPath = strings.Replace(localVarPath, "{"+"collectorId"+"}", fmt.Sprintf("#{collectorId}"), -1)
 
 	localVarHeaderParams := make(map[string]string)
