@@ -48,7 +48,7 @@ type EventHubModel struct {
 
 type EventHubSourceModel struct {
 	// Id of source
-	Id string `json:"id"`
+	Id int `json:"id"`
 	// SchemaRef type of source
 	SchemaRef EventHubSourceSchema `json:"schemaRef"`
 	// Config Event Hub source configuration
