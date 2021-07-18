@@ -53,6 +53,7 @@ func (a *APIClient) UpdateEventHubSource(body types.UpdateEventHubSourceRequest,
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	etag, err := a.getEventHubSourceEtag(localVarPath)
+	fmt.Println(etag)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
