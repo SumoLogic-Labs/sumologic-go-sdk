@@ -3,23 +3,22 @@ package cip
 import (
 	"fmt"
 	"github.com/wizedkyle/sumologic-go-sdk/service/cip/types"
-	"io"
+	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strings"
 )
 
 /*
-UpdateEventHubSource
-Update an Azure Event Hub source.
- * body - The definition of the Event Hub source.
- * collectorId - The identifier of the Sumo Logic collector that the source is assigned to.
- * sourceId - The identifier of the Sumo Logic source.
+GetEventHubSource
+Get information about an Azure Event Hub source.
+ * collectorId - The identifier of the Sumo Logic collector that the source is assigned to
+ * sourceId - The identifier of the Sumo Logic Azure Event Hub source
 Returns types.EventHubModel
 */
-func (a *APIClient) UpdateEventHubSource(body types.UpdateEventHubSourceRequest, collectorId string, sourceId string) (types.EventHubModel, *http.Response, error) {
+func (a *APIClient) GetEventHubSource(collectorId string, sourceId string) (types.EventHubModel, *http.Response, error) {
 	var (
-		localVarHttpMethod  = strings.ToUpper("Put")
+		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}
 		localVarFileName    string
 		localVarFileBytes   []byte
@@ -36,7 +35,7 @@ func (a *APIClient) UpdateEventHubSource(body types.UpdateEventHubSourceRequest,
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHttpContentTypes := []string{"application/json"}
+	localVarHttpContentTypes := []string{}
 
 	// set Content-Type header
 	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
@@ -52,13 +51,6 @@ func (a *APIClient) UpdateEventHubSource(body types.UpdateEventHubSourceRequest,
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	etag, err := a.getEventHubSourceEtag(localVarPath)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-	localVarHeaderParams["If-Match"] = etag[0]
-	// body params
-	localVarPostBody = &body
 	r, err := a.prepareRequest(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -69,7 +61,7 @@ func (a *APIClient) UpdateEventHubSource(body types.UpdateEventHubSourceRequest,
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := io.ReadAll(localVarHttpResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
 	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
@@ -112,46 +104,4 @@ func (a *APIClient) UpdateEventHubSource(body types.UpdateEventHubSourceRequest,
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
-}
-
-func (a *APIClient) getEventHubSourceEtag(path string) ([]string, error) {
-	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
-	)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHttpContentTypes := []string{}
-
-	// set Content-Type head
-	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
-	if localVarHttpContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHttpContentType
-	}
-
-	// to determine the Accept header
-	localVarHttpHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
-	if localVarHttpHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-
-	r, err := a.prepareRequest(path, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return []string{}, err
-	}
-
-	localVarHttpResponse, err := a.callAPI(r)
-	if err != nil || localVarHttpResponse == nil {
-		return []string{}, err
-	}
-	return localVarHttpResponse.Header.Values("Etag"), nil
 }
