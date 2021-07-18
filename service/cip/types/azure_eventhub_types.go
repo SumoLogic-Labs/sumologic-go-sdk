@@ -68,3 +68,10 @@ type EventHubSourceSchema struct {
 	// Type of source (use "Azure Event Hubs")
 	Type string `json:"type"`
 }
+
+type UpdateEventHubSourceRequest struct {
+	// ApiVersion version of the api
+	ApiVersion string `json:"api.version"`
+	// Source type of source
+	Source EventHubSource `json:"source"`
+}
