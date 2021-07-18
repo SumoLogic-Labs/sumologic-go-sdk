@@ -74,6 +74,7 @@ func (a *APIClient) UpdateEventHubSource(body types.UpdateEventHubSourceRequest,
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
 	}
+	fmt.Println(string(localVarBody))
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
