@@ -64,6 +64,7 @@ func (a *APIClient) UpdateEventHubSource(body types.UpdateEventHubSourceRequest,
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
+	fmt.Println(r.Header.Values("If-Match"))
 
 	localVarHttpResponse, err := a.callAPI(r)
 	if err != nil || localVarHttpResponse == nil {
