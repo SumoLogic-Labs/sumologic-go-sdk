@@ -53,18 +53,17 @@ func (a *APIClient) UpdateEventHubSource(body types.UpdateEventHubSourceRequest,
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	etag, err := a.getEventHubSourceEtag(localVarPath)
-	fmt.Println(etag[0])
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 	localVarHeaderParams["If-Match"] = etag[0]
+
 	// body params
 	localVarPostBody = &body
 	r, err := a.prepareRequest(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
-	fmt.Println(r.Header.Values("If-Match"))
 
 	localVarHttpResponse, err := a.callAPI(r)
 	if err != nil || localVarHttpResponse == nil {
@@ -76,8 +75,6 @@ func (a *APIClient) UpdateEventHubSource(body types.UpdateEventHubSourceRequest,
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
 	}
-	fmt.Println(string(localVarBody))
-	fmt.Println(localVarPath)
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
