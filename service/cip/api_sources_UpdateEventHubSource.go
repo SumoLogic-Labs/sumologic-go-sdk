@@ -139,6 +139,15 @@ func (a *APIClient) getEventHubSourceEtag(path string) ([]string, error) {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
 
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+
 	r, err := a.prepareRequest(path, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return []string{}, err

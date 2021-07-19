@@ -65,8 +65,6 @@ type EventHubSourceStateModel struct {
 }
 
 type EventHubSourceUpdateDefinition struct {
-	// Id of the source
-	Id int `json:"id"`
 	// Name of the source
 	Name string `json:"name"`
 	// Description of the source
@@ -92,6 +90,8 @@ type EventHubSourceUpdateDefinition struct {
 }
 
 type EventHubSourceUpdateModel struct {
+	// Id of the source
+	Id int `json:"id"`
 	// SchemaRef type of source
 	SchemaRef EventHubSourceSchema `json:"schemaRef"`
 	// Config Event Hub source configuration
@@ -106,8 +106,6 @@ type EventHubSourceSchema struct {
 }
 
 type UpdateEventHubSourceRequest struct {
-	// ApiVersion version of the api
-	ApiVersion string `json:"api.version"`
 	// Source type of source
 	Source EventHubSourceUpdateModel `json:"source"`
 }
