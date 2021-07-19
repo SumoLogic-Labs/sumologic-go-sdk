@@ -1,6 +1,6 @@
 # sumologic-go-sdk
 
-`sumolog-go-sdk` is the Sumo Logic SDK for the Go programming language.
+`sumologic-go-sdk` is the Sumo Logic SDK for the Go programming language.
 
 The SDK requires a minimum version of `Go 1.16`.
 
