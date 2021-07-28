@@ -34,6 +34,11 @@ type ListCollectorsOfflineOpts struct {
 }
 
 type CollectorModel struct {
+	// Collector information
+	Collector CollectorModelDefinition `json:"collector"`
+}
+
+type CollectorModelDefinition struct {
 	// Alive collector is online or offline
 	Alive bool `json:"alive"`
 	// Category overrides the categories on sources
