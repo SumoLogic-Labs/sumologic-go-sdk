@@ -1,6 +1,7 @@
 package cip
 
 import (
+	"fmt"
 	"github.com/wizedkyle/sumologic-go-sdk/service/cip/types"
 	"io/ioutil"
 	"net/http"
@@ -64,6 +65,7 @@ func (a *APIClient) CreateCollector(body types.CreateCollectorRequest) (types.Co
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
 	}
+	fmt.Println(string(localVarBody))
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
