@@ -62,7 +62,7 @@ type CollectorModelDefinition struct {
 	// HostName of the collector
 	HostName string `json:"hostName,omitempty"`
 	// Id of the collector
-	Id string `json:"id"`
+	Id int `json:"id"`
 	// LastSeenAlive the last time the Sumo Logic service received an active heartbeat from the Collector, specified as milliseconds since epoch
 	LastSeenAlive int `json:"lastSeenAlive,omitempty"`
 	// Name of the collector
