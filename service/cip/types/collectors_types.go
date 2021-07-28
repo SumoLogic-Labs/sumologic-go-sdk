@@ -110,7 +110,7 @@ type CreateCollectorRequest struct {
 
 type ListCollectorsModel struct {
 	// Collectors array of types.CollectorModel
-	Collectors []CollectorModel `json:"collectors"`
+	Collectors []CollectorModelDefinition `json:"collectors"`
 }
 
 type UpdateHostedCollectorDefinition struct {
