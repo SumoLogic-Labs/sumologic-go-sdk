@@ -114,6 +114,16 @@ type ListCollectorsModel struct {
 }
 
 type UpdateHostedCollectorDefinition struct {
+	// Collector information
+	Collector UpdateHostedCollectorModel `json:"collector"`
+}
+
+type UpdateInstalledCollectorDefinition struct {
+	// Collector information
+	Collector UpdateInstalledCollectorModel `json:"collector"`
+}
+
+type UpdateHostedCollectorModel struct {
 	// Id of the collector
 	Id string `json:"id"`
 	// Name of the collector
@@ -130,7 +140,7 @@ type UpdateHostedCollectorDefinition struct {
 	TimeZone string `json:"timeZone"`
 }
 
-type UpdateInstalledCollectorDefinition struct {
+type UpdateInstalledCollectorModel struct {
 	// Id of the collector
 	Id string `json:"id"`
 	// Name of the collector
