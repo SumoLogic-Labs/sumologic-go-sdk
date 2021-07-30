@@ -6,12 +6,13 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"reflect"
 	"strings"
 )
 
 /*
 UpdateInstalledCollector
-Update a installed collector in the organization.
+Update an installed collector in the organization.
  * body - Information to update about the collector.
  * id - Identifier of the installed collector to update.
 Returns types.CollectorModel
@@ -56,7 +57,39 @@ func (a *APIClient) UpdateInstalledCollector(body types.UpdateInstalledCollector
 	localVarHeaderParams["If-Match"] = etag[0]
 
 	// body params
-	localVarPostBody = &body
+	collectorInfo, response, err := a.GetCollectorById(id)
+	if err != nil {
+		return localVarReturnValue, response, err
+	}
+	if collectorInfo.Collector.Category != body.Collector.Category {
+		collectorInfo.Collector.Category = body.Collector.Category
+	}
+	if collectorInfo.Collector.Description != body.Collector.Description {
+		collectorInfo.Collector.Description = body.Collector.Description
+	}
+	if collectorInfo.Collector.Ephemeral != body.Collector.Ephemeral {
+		collectorInfo.Collector.Ephemeral = body.Collector.Ephemeral
+	}
+	if !reflect.DeepEqual(collectorInfo.Collector.Fields, body.Collector.Fields) {
+		collectorInfo.Collector.Fields = body.Collector.Fields
+	}
+	if collectorInfo.Collector.HostName != body.Collector.HostName {
+		collectorInfo.Collector.HostName = body.Collector.HostName
+	}
+	if collectorInfo.Collector.Name != body.Collector.Name {
+		collectorInfo.Collector.Name = body.Collector.Name
+	}
+	if collectorInfo.Collector.SourceSyncMode != body.Collector.SourceSyncMode {
+		collectorInfo.Collector.SourceSyncMode = body.Collector.SourceSyncMode
+	}
+	if collectorInfo.Collector.TargetCpu != int(body.Collector.TargetCPU) {
+		collectorInfo.Collector.TargetCpu = int(body.Collector.TargetCPU)
+	}
+	if collectorInfo.Collector.TimeZone != body.Collector.TimeZone {
+		collectorInfo.Collector.TimeZone = body.Collector.TimeZone
+	}
+	localVarPostBody = &collectorInfo
+
 	r, err := a.prepareRequest(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
