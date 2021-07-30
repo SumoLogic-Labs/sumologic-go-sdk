@@ -76,7 +76,7 @@ func (a *APIClient) UpdateInstalledCollector(body types.UpdateInstalledCollector
 	if collectorInfo.Collector.HostName != body.Collector.HostName {
 		collectorInfo.Collector.HostName = body.Collector.HostName
 	}
-	if collectorInfo.Collector.Name != body.Collector.Name {
+	if collectorInfo.Collector.Name != body.Collector.Name && body.Collector.Name != "" {
 		collectorInfo.Collector.Name = body.Collector.Name
 	}
 	if collectorInfo.Collector.SourceSyncMode != body.Collector.SourceSyncMode {
