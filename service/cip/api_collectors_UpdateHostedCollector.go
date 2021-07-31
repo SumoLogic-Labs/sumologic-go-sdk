@@ -6,6 +6,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"reflect"
 	"strings"
 )
 
@@ -56,7 +57,27 @@ func (a *APIClient) UpdateHostedCollector(body types.UpdateHostedCollectorDefini
 	localVarHeaderParams["If-Match"] = etag[0]
 
 	// body params
-	localVarPostBody = &body
+	collectorInfo, response, err := a.GetCollectorById(id)
+	if err != nil {
+		return localVarReturnValue, response, err
+	}
+	if collectorInfo.Collector.Category != body.Collector.Category {
+		collectorInfo.Collector.Category = body.Collector.Category
+	}
+	if collectorInfo.Collector.Description != body.Collector.Description {
+		collectorInfo.Collector.Description = body.Collector.Description
+	}
+	if !reflect.DeepEqual(collectorInfo.Collector.Fields, body.Collector.Fields) {
+		collectorInfo.Collector.Fields = body.Collector.Fields
+	}
+	if collectorInfo.Collector.Name != body.Collector.Name && body.Collector.Name != "" {
+		collectorInfo.Collector.Name = body.Collector.Name
+	}
+	if collectorInfo.Collector.TimeZone != body.Collector.TimeZone {
+		collectorInfo.Collector.TimeZone = body.Collector.TimeZone
+	}
+	localVarPostBody = &collectorInfo
+
 	r, err := a.prepareRequest(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
