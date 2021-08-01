@@ -1,5 +1,7 @@
 package types
 
+import "github.com/antihax/optional"
+
 type DynamicRule struct {
 	// Creation timestamp in UTC in [RFC3339](https://tools.ietf.org/html/rfc3339) format.
 	CreatedAt string `json:"createdAt"`
@@ -26,4 +28,16 @@ type DynamicRuleDefinition struct {
 	Scope string `json:"scope"`
 	// Is the dynamic parsing rule enabled.
 	Enabled bool `json:"enabled"`
+}
+
+type DynamicParsingRuleManagementApiListDynamicParsingRulesOpts struct {
+	Limit optional.Int32
+	Token optional.String
+}
+
+type ListDynamicRulesResponse struct {
+	// List of dynamic parsing rules.
+	Data []DynamicRule `json:"data"`
+	// Next continuation token.
+	Next string `json:"next,omitempty"`
 }
