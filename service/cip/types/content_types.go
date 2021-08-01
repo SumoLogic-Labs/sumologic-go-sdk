@@ -1,6 +1,9 @@
 package types
 
-import "time"
+import (
+	"github.com/antihax/optional"
+	"time"
+)
 
 type Content struct {
 	// Creation timestamp in UTC in [RFC3339](https://tools.ietf.org/html/rfc3339) format.
@@ -26,4 +29,57 @@ type Content struct {
 type ContentList struct {
 	// A list of the content items.
 	Data []Content `json:"data"`
+}
+
+type ContentPath struct {
+	// Path of the content item.
+	Path string `json:"path"`
+}
+
+type ContentSyncDefinition struct {
+	// The item type. Dashboard links are not supported.
+	Type_ string `json:"type"`
+	// The name of the item.
+	Name string `json:"name"`
+}
+
+type ContentManagementApiAsyncCopyStatusOpts struct {
+	IsAdminMode optional.String
+}
+
+type ContentManagementApiBeginAsyncCopyOpts struct {
+	IsAdminMode optional.String
+}
+
+type ContentManagementApiBeginAsyncDeleteOpts struct {
+	IsAdminMode optional.String
+}
+
+type ContentManagementApiBeginAsyncExportOpts struct {
+	IsAdminMode optional.String
+}
+
+type ContentManagementApiBeginAsyncImportOpts struct {
+	IsAdminMode optional.String
+	Overwrite   optional.Bool
+}
+
+type ContentManagementApiGetAsyncDeleteStatusOpts struct {
+	IsAdminMode optional.String
+}
+
+type ContentManagementApiGetAsyncExportResultOpts struct {
+	IsAdminMode optional.String
+}
+
+type ContentManagementApiGetAsyncExportStatusOpts struct {
+	IsAdminMode optional.String
+}
+
+type ContentManagementApiGetAsyncImportStatusOpts struct {
+	IsAdminMode optional.String
+}
+
+type ContentManagementApiMoveItemOpts struct {
+	IsAdminMode optional.String
 }
