@@ -10,23 +10,21 @@ import (
 )
 
 /*
-GetAsyncExportResult
-Get results from content export job for the given job identifier. The results from this export are incompatible with the Library import feature in the Sumo user interface.
-You can use this function to find out type of content was exported and use one of the following functions to return the appropriate data for the content type: GetFolderAsyncExportResult,
-GetDashboardAsyncExportResult, GetMewboardAsyncExportResult, GetSavedSearchAsyncExportResult, GetMetricsSavedSearchAsyncExportResult, GetMetricsSearchAsyncExportResult, GetLookupTableAsyncExportResult.
+GetMetricsSavedSearchAsyncExportResult
+Get metrics saved search results from content export job for the given job identifier. The results from this export are incompatible with the Library import feature in the Sumo user interface.
  * contentId - The identifier of the exported content item.
  * jobId - The identifier of the asynchronous job.
  * optional - nil or *types.ContentManagementApiGetAsyncExportResultOpts - Optional Parameters:
      * IsAdminMode (optional.String) - Set this to true if you want to perform the request as a Content Administrator.
-Returns types.ContentSyncDefinition
+Returns types.MetricsSavedSearchSyncDefinition
 */
-func (a *APIClient) GetAsyncExportResult(contentId string, jobId string, localVarOptionals *types.ContentManagementApiGetAsyncExportResultOpts) (types.ContentSyncDefinition, *http.Response, error) {
+func (a *APIClient) GetMetricsSavedSearchAsyncExportResult(contentId string, jobId string, localVarOptionals *types.ContentManagementApiGetAsyncExportResultOpts) (types.MetricsSavedSearchSyncDefinition, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}
 		localVarFileName    string
 		localVarFileBytes   []byte
-		localVarReturnValue types.ContentSyncDefinition
+		localVarReturnValue types.MetricsSavedSearchSyncDefinition
 	)
 
 	// create path and map variables
@@ -88,7 +86,7 @@ func (a *APIClient) GetAsyncExportResult(contentId string, jobId string, localVa
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
-			var v types.ContentSyncDefinition
+			var v types.MetricsSavedSearchSyncDefinition
 			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
