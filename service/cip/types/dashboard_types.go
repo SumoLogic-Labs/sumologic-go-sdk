@@ -70,6 +70,14 @@ type DashboardRequest struct {
 	ColoringRules []ColoringRule `json:"coloringRules,omitempty"`
 }
 
+type FromTimeRange struct {
+	Type         string `json:"type"`
+	RelativeTime string `json:"relativeTime,omitempty"`
+	EpochMillis  int64  `json:"epochMillis,omitempty"`
+	Iso8601Time  string `json:"iso8601Time,omitempty"`
+	RangeName    string `json:"rangeName,omitempty"`
+}
+
 type Layout struct {
 	// The type of panel layout on the Dashboard. For example, Grid, Tabs, or Hierarchical. Currently supports `Grid` only.
 	LayoutType string `json:"layoutType"`
@@ -101,8 +109,7 @@ type Panel struct {
 
 type ResolvableTimeRange struct {
 	// Type of the time range. Value must be either `CompleteLiteralTimeRange` or `BeginBoundedTimeRange`.
-	Type_        string `json:"type"`
-	RelativeTime string `json:"relativeTime,omitempty"`
+	Type_ string `json:"type"`
 }
 
 type Variable struct {
