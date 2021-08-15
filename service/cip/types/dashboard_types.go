@@ -26,16 +26,16 @@ type Dashboard struct {
 	// Description of the dashboard.
 	Description string `json:"description,omitempty"`
 	// The identifier of the folder to save the dashboard in. By default it is saved in your personal folder.
-	FolderId         string            `json:"folderId,omitempty"`
-	TopologyLabelMap *TopologyLabelMap `json:"topologyLabelMap,omitempty"`
+	FolderId         string           `json:"folderId,omitempty"`
+	TopologyLabelMap TopologyLabelMap `json:"topologyLabelMap,omitempty"`
 	// If set denotes that the dashboard concerns a given domain (e.g. `aws`, `k8s`, `app`).
 	Domain string `json:"domain,omitempty"`
 	// Interval of time (in seconds) to automatically refresh the dashboard. A value of 0 means we never automatically refresh the dashboard. This functionality is currently not supported.
-	RefreshInterval int32                `json:"refreshInterval,omitempty"`
-	TimeRange       *ResolvableTimeRange `json:"timeRange"`
+	RefreshInterval int32               `json:"refreshInterval,omitempty"`
+	TimeRange       ResolvableTimeRange `json:"timeRange"`
 	// Panels in the dashboard.
 	Panels []Panel `json:"panels,omitempty"`
-	Layout *Layout `json:"layout,omitempty"`
+	Layout Layout  `json:"layout,omitempty"`
 	// Variables to apply to the panels.
 	Variables []Variable `json:"variables,omitempty"`
 	// Theme for the dashboard. Either `Light` or `Dark`.
@@ -52,13 +52,13 @@ type DashboardRequest struct {
 	// Description of the dashboard.
 	Description string `json:"description,omitempty"`
 	// The identifier of the folder to save the dashboard in. By default it is saved in your personal folder.
-	FolderId         string            `json:"folderId,omitempty"`
-	TopologyLabelMap *TopologyLabelMap `json:"topologyLabelMap,omitempty"`
+	FolderId         string           `json:"folderId,omitempty"`
+	TopologyLabelMap TopologyLabelMap `json:"topologyLabelMap,omitempty"`
 	// If set denotes that the dashboard concerns a given domain (e.g. `aws`, `k8s`, `app`).
 	Domain string `json:"domain,omitempty"`
 	// Interval of time (in seconds) to automatically refresh the dashboard. A value of 0 means we never automatically refresh the dashboard. This functionality is currently not supported.
-	RefreshInterval int32                `json:"refreshInterval,omitempty"`
-	TimeRange       *ResolvableTimeRange `json:"timeRange"`
+	RefreshInterval int32               `json:"refreshInterval,omitempty"`
+	TimeRange       ResolvableTimeRange `json:"timeRange"`
 	// Panels in the dashboard.
 	Panels []Panel `json:"panels,omitempty"`
 	Layout *Layout `json:"layout,omitempty"`
@@ -122,8 +122,8 @@ type Variable struct {
 	// Display name of the variable shown in the UI. If this field is empty, the name field will be used. The display name is case-insensitive. Only numbers, and underscores are allowed in the variable name. This field is not yet supported by the UI.
 	DisplayName string `json:"displayName,omitempty"`
 	// Default value of the variable.
-	DefaultValue     string                    `json:"defaultValue,omitempty"`
-	SourceDefinition *VariableSourceDefinition `json:"sourceDefinition"`
+	DefaultValue     string                   `json:"defaultValue,omitempty"`
+	SourceDefinition VariableSourceDefinition `json:"sourceDefinition"`
 	// Allow multiple selections in the values dropdown.
 	AllowMultiSelect bool `json:"allowMultiSelect,omitempty"`
 	// Include an \"All\" option at the top of the variable's values dropdown.
