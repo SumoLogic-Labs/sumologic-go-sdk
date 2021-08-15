@@ -70,7 +70,7 @@ type DashboardRequest struct {
 	ColoringRules []ColoringRule `json:"coloringRules,omitempty"`
 }
 
-type FromTimeRange struct {
+type TimeRangeBoundary struct {
 	Type         string `json:"type"`
 	RelativeTime string `json:"relativeTime,omitempty"`
 	EpochMillis  int64  `json:"epochMillis,omitempty"`
@@ -109,7 +109,9 @@ type Panel struct {
 
 type ResolvableTimeRange struct {
 	// Type of the time range. Value must be either `CompleteLiteralTimeRange` or `BeginBoundedTimeRange`.
-	Type_ string `json:"type"`
+	Type_ string            `json:"type"`
+	From  TimeRangeBoundary `json:"from"`
+	To    TimeRangeBoundary `json:"to"`
 }
 
 type Variable struct {
