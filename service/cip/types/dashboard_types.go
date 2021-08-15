@@ -101,7 +101,8 @@ type Panel struct {
 
 type ResolvableTimeRange struct {
 	// Type of the time range. Value must be either `CompleteLiteralTimeRange` or `BeginBoundedTimeRange`.
-	Type_ string `json:"type"`
+	Type_        string `json:"type"`
+	RelativeTime string `json:"relativeTime,omitempty"`
 }
 
 type Variable struct {
