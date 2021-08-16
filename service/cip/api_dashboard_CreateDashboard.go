@@ -75,6 +75,7 @@ func (a *APIClient) CreateDashboard(body types.DashboardRequest) (types.Dashboar
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
+		//todo: remove line
 		fmt.Println(string(localVarBody))
 		newErr := GenericSwaggerError{
 			body:  localVarBody,

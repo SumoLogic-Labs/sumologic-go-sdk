@@ -47,12 +47,14 @@ type Dashboard struct {
 }
 
 type DashboardRequest struct {
+	// Name of the dashboard
+	Name string `json:"name"`
 	// Title of the dashboard.
 	Title string `json:"title"`
 	// Description of the dashboard.
-	Description string `json:"description,omitempty"`
+	Description string `json:"description"`
 	// The identifier of the folder to save the dashboard in. By default it is saved in your personal folder.
-	FolderId         string           `json:"folderId,omitempty"`
+	FolderId         string           `json:"folderId"`
 	TopologyLabelMap TopologyLabelMap `json:"topologyLabelMap,omitempty"`
 	// If set denotes that the dashboard concerns a given domain (e.g. `aws`, `k8s`, `app`).
 	Domain string `json:"domain,omitempty"`
@@ -65,7 +67,7 @@ type DashboardRequest struct {
 	// Variables to apply to the panels.
 	Variables []Variable `json:"variables,omitempty"`
 	// Theme for the dashboard. Either `Light` or `Dark`.
-	Theme string `json:"theme,omitempty"`
+	Theme string `json:"theme"`
 	// Rules to set the color of data. This is an internal field and is not current supported by UI.
 	ColoringRules []ColoringRule `json:"coloringRules,omitempty"`
 }
@@ -111,7 +113,7 @@ type ResolvableTimeRange struct {
 	// Type of the time range. Value must be either `CompleteLiteralTimeRange` or `BeginBoundedTimeRange`.
 	Type_ string            `json:"type"`
 	From  TimeRangeBoundary `json:"from"`
-	To    TimeRangeBoundary `json:"to"`
+	To    TimeRangeBoundary `json:"to,omitempty"`
 }
 
 type Variable struct {
