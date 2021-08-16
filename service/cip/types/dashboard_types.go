@@ -51,6 +51,8 @@ type DashboardRequest struct {
 	Name string `json:"name"`
 	// Title of the dashboard.
 	Title string `json:"title"`
+	// Type of dashboard
+	Type string `json:"type"`
 	// Description of the dashboard.
 	Description string `json:"description"`
 	// The identifier of the folder to save the dashboard in. By default it is saved in your personal folder.
@@ -59,7 +61,7 @@ type DashboardRequest struct {
 	// If set denotes that the dashboard concerns a given domain (e.g. `aws`, `k8s`, `app`).
 	Domain string `json:"domain,omitempty"`
 	// Interval of time (in seconds) to automatically refresh the dashboard. A value of 0 means we never automatically refresh the dashboard. This functionality is currently not supported.
-	RefreshInterval int32               `json:"refreshInterval,omitempty"`
+	RefreshInterval int                 `json:"refreshInterval,omitempty"`
 	TimeRange       ResolvableTimeRange `json:"timeRange"`
 	// Panels in the dashboard.
 	Panels []Panel `json:"panels,omitempty"`
