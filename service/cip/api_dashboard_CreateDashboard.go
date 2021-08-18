@@ -1,7 +1,6 @@
 package cip
 
 import (
-	"fmt"
 	"github.com/wizedkyle/sumologic-go-sdk/service/cip/types"
 	"io/ioutil"
 	"net/http"
@@ -75,8 +74,6 @@ func (a *APIClient) CreateDashboard(body types.DashboardRequest) (types.Dashboar
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
-		//todo: remove line
-		fmt.Println(string(localVarBody))
 		newErr := GenericSwaggerError{
 			body:  localVarBody,
 			error: localVarHttpResponse.Status,
