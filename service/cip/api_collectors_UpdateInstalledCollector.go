@@ -13,9 +13,8 @@ import (
 /*
 UpdateInstalledCollector
 Update an installed collector in the organization.
- * body - Information to update about the collector.
- * id - Identifier of the installed collector to update.
-Returns types.CollectorModel
+	body - Information to update about the collector.
+	id - Identifier of the installed collector to update.
 */
 func (a *APIClient) UpdateInstalledCollector(body types.UpdateInstalledCollectorDefinition, id string) (types.CollectorModel, *http.Response, error) {
 	var (

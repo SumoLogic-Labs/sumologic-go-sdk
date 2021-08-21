@@ -12,10 +12,9 @@ import (
 /*
 UpdateEventHubSource
 Update an Azure Event Hub source.
- * body - The definition of the Event Hub source.
- * collectorId - The identifier of the Sumo Logic collector that the source is assigned to.
- * sourceId - The identifier of the Sumo Logic source.
-Returns types.EventHubModel
+	body - The definition of the Event Hub source.
+	collectorId - The identifier of the Sumo Logic collector that the source is assigned to.
+	sourceId - The identifier of the Sumo Logic source.
 */
 func (a *APIClient) UpdateEventHubSource(body types.UpdateEventHubSourceRequest, collectorId string, sourceId string) (types.EventHubModel, *http.Response, error) {
 	var (

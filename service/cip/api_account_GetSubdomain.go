@@ -11,7 +11,6 @@ import (
 /*
 GetSubdomain
 Get the configured subdomain.
-@return types.SubdomainDefinitionResponse
 */
 func (a *APIClient) GetSubdomain() (types.SubdomainDefinitionResponse, *http.Response, error) {
 	var (

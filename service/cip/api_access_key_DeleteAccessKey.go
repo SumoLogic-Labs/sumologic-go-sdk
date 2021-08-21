@@ -12,7 +12,7 @@ import (
 /*
 DeleteAccessKey
 Deletes the access key with the given accessId.
- * id - The accessId of the access key to delete.
+	id - The accessId of the access key to delete.
 */
 func (a *APIClient) DeleteAccessKey(id string) (*http.Response, error) {
 	var (

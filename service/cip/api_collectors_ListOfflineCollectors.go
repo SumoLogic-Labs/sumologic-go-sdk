@@ -11,11 +11,10 @@ import (
 /*
 ListOfflineCollectors
 Get a list of offline collectors in the organization. The response has a default limit of 1000 collectors.
- * optional - nil or *types.ListCollectorsOpts - Optional Parameters:
-	* AliveBeforeDays (optional.Int32) - Minimum number of days the Collectors have been offline.
-	* Limit (optional.Int32) - Limit the number of collectors returned in the response. The number of collectors returned may be less than the limit.
-	* Offset (optional.Int32) - Offset into the list of Collectors.
-Returns types.ListCollectorsModel
+	optional - nil or *types.ListCollectorsOpts - Optional Parameters:
+		AliveBeforeDays (optional.Int32) - Minimum number of days the Collectors have been offline.
+		Limit (optional.Int32) - Limit the number of collectors returned in the response. The number of collectors returned may be less than the limit.
+		Offset (optional.Int32) - Offset into the list of Collectors.
 */
 func (a *APIClient) ListOfflineCollectors(localVarOptionals *types.ListCollectorsOfflineOpts) (types.ListCollectorsModel, *http.Response, error) {
 	var (

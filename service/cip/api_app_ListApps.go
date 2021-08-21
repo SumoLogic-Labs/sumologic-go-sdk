@@ -11,7 +11,6 @@ import (
 /*
 ListApps
 Lists all available apps from the App Catalog.
-Returns types.ListAppsResult
 */
 func (a *APIClient) ListApps() (types.ListAppsResult, *http.Response, error) {
 	var (

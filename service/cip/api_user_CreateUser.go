@@ -11,8 +11,7 @@ import (
 /*
 CreateUser
 Create a new user in the organization.
- * body - Information about the new user.
-Returns types.UserModel
+	body - Information about the new user.
 */
 func (a *APIClient) CreateUser(body types.CreateUserDefinition) (types.UserModel, *http.Response, error) {
 	var (

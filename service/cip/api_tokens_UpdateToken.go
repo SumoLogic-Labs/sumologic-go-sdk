@@ -12,9 +12,8 @@ import (
 /*
 UpdateToken
 Update a token with the given identifier in the token library.
- * body - The token to update.
- * id - Identifier of the token to update.
-Returns types.TokenBaseResponse
+	body - The token to update.
+	id - Identifier of the token to update.
 */
 func (a *APIClient) UpdateToken(body types.TokenBaseDefinitionUpdate, id string) (types.TokenBaseResponse, *http.Response, error) {
 	var (

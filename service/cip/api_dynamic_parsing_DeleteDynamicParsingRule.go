@@ -12,7 +12,7 @@ import (
 /*
 DeleteDynamicParsingRule
 Delete a dynamic parsing rule with the given identifier.
- * id - Identifier of the dynamic parsing rule to delete.
+	id - Identifier of the dynamic parsing rule to delete.
 */
 func (a *APIClient) DeleteDynamicParsingRule(id string) (*http.Response, error) {
 	var (

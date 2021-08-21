@@ -12,8 +12,7 @@ import (
 /*
 GetCollectorById
 Gets information about a collector by its identifier.
- * id - The identifier of the collector
-Returns types.CollectorModel
+	id - The identifier of the collector
 */
 func (a *APIClient) GetCollectorById(id string) (types.CollectorModel, *http.Response, error) {
 	var (

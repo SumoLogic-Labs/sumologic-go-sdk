@@ -11,7 +11,6 @@ import (
 /*
 GetStatus
 Get information related to the accounts plan, pricing model, expiration and payment status.
-Returns types.AccountStatusResponse
 */
 func (a *APIClient) GetStatus() (types.AccountStatusResponse, *http.Response, error) {
 	var (

@@ -12,9 +12,8 @@ import (
 /*
 InstallApp
 Installs the app with given UUID in the folder specified using destinationFolderId.
- * body - Information for the new app
- * uuid - UUID of the app to install.
-Returns types.BeginAsyncJobResponse
+	body - Information for the new app
+	uuid - UUID of the app to install.
 */
 func (a *APIClient) InstallApp(body types.AppInstallRequest, uuid string) (types.BeginAsyncJobResponse, *http.Response, error) {
 	var (

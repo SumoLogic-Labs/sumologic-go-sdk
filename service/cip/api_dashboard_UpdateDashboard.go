@@ -12,9 +12,8 @@ import (
 /*
 UpdateDashboard
 Update a dashboard by the given identifier.
- * body - Information to update on the dashboard.
- * id - Identifier of the dashboard to update.
-Returns types.Dashboard
+	body - Information to update on the dashboard.
+	id - Identifier of the dashboard to update.
 */
 func (a *APIClient) UpdateDashboard(body types.DashboardRequest, id string) (types.Dashboard, *http.Response, error) {
 	var (

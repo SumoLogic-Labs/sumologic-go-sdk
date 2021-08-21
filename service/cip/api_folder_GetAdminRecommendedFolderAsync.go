@@ -11,11 +11,10 @@ import (
 /*
 GetAdminRecommendedFolderAsync
 Schedule an asynchronous job to get the top-level Admin Recommended content items.
- * optional - nil or *types.FolderManagementApiGetAdminRecommendedFolderAsyncOpts - Optional Parameters:
-     * IsAdminMode (optional.String) - Set this to true if you want to perform the request as a Content Administrator.
-Returns types.BeginAsyncJobResponse
+	optional - nil or *types.FolderOpts - Optional Parameters:
+		IsAdminMode (optional.String) - Set this to true if you want to perform the request as a Content Administrator.
 */
-func (a *APIClient) GetAdminRecommendedFolderAsync(localVarOptionals *types.FolderManagementApiGetAdminRecommendedFolderAsyncOpts) (types.BeginAsyncJobResponse, *http.Response, error) {
+func (a *APIClient) GetAdminRecommendedFolderAsync(localVarOptionals *types.FolderOpts) (types.BeginAsyncJobResponse, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}

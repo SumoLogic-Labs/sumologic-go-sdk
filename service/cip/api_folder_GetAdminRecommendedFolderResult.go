@@ -12,8 +12,7 @@ import (
 /*
 GetAdminRecommendedFolderAsyncResult
 Get results from Admin Recommended job for the given job identifier.
- * jobId - The identifier of the asynchronous Admin Recommended folder job.
-Returns types.Folder
+	jobId - The identifier of the asynchronous Admin Recommended folder job.
 */
 func (a *APIClient) GetAdminRecommendedFolderAsyncResult(jobId string) (types.Folder, *http.Response, error) {
 	var (

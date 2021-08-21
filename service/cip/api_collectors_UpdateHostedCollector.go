@@ -13,9 +13,8 @@ import (
 /*
 UpdateHostedCollector
 Updates a hosted collector in the organization.
- * body - Information to update about the collector.
- * id - Identifier of the hosted collector to update.
-Returns types.RoleModel
+	body - Information to update about the collector.
+	id - Identifier of the hosted collector to update.
 */
 func (a *APIClient) UpdateHostedCollector(body types.UpdateHostedCollectorDefinition, id string) (types.CollectorModel, *http.Response, error) {
 	var (

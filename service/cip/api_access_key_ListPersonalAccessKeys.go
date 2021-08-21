@@ -11,7 +11,6 @@ import (
 /*
 ListPersonalAccessKeys
 List all access keys that belong to your user.
-Returns types.ListAccessKeysResult
 */
 func (a *APIClient) ListPersonalAccessKeys() (types.ListAccessKeysResult, *http.Response, error) {
 	var (

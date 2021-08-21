@@ -12,11 +12,11 @@ import (
 /*
 DeleteUser
 Delete a user with the given identifier from the organization and transfer their content to the user with the identifier specified in transferTo. If transferTo is not specified the contents are deleted.
- * id - Identifier of the user to delete.
- * optional - nil or *types.UserManagementApiDeleteUserOpts - Optional Parameters:
-     * TransferTo (optional.String) -  Identifier of the user to receive the transfer of content from the deleted user.
+	id - Identifier of the user to delete.
+	optional - nil or *types.DeleteUserOpts - Optional Parameters:
+		TransferTo (optional.String) -  Identifier of the user to receive the transfer of content from the deleted user.
 */
-func (a *APIClient) DeleteUser(id string, localVarOptionals *types.UserManagementApiDeleteUserOpts) (*http.Response, error) {
+func (a *APIClient) DeleteUser(id string, localVarOptionals *types.DeleteUserOpts) (*http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Delete")
 		localVarPostBody   interface{}

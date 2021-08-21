@@ -43,45 +43,13 @@ type ContentSyncDefinition struct {
 	Name string `json:"name"`
 }
 
-type ContentManagementApiAsyncCopyStatusOpts struct {
+type ContentOpts struct {
 	IsAdminMode optional.String
 }
 
-type ContentManagementApiBeginAsyncCopyOpts struct {
-	IsAdminMode optional.String
-}
-
-type ContentManagementApiBeginAsyncDeleteOpts struct {
-	IsAdminMode optional.String
-}
-
-type ContentManagementApiBeginAsyncExportOpts struct {
-	IsAdminMode optional.String
-}
-
-type ContentManagementApiBeginAsyncImportOpts struct {
+type ContentImportOpts struct {
 	IsAdminMode optional.String
 	Overwrite   optional.Bool
-}
-
-type ContentManagementApiGetAsyncDeleteStatusOpts struct {
-	IsAdminMode optional.String
-}
-
-type ContentManagementApiGetAsyncExportResultOpts struct {
-	IsAdminMode optional.String
-}
-
-type ContentManagementApiGetAsyncExportStatusOpts struct {
-	IsAdminMode optional.String
-}
-
-type ContentManagementApiGetAsyncImportStatusOpts struct {
-	IsAdminMode optional.String
-}
-
-type ContentManagementApiMoveItemOpts struct {
-	IsAdminMode optional.String
 }
 
 type DashboardSyncDefinition struct {

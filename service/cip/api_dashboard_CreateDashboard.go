@@ -11,8 +11,7 @@ import (
 /*
 CreateDashboard
 Creates a new dashboard.
- * body - Information to create the new dashboard.
-Returns types.Dashboard
+	body - Information to create the new dashboard.
 */
 func (a *APIClient) CreateDashboard(body types.DashboardRequest) (types.Dashboard, *http.Response, error) {
 	var (

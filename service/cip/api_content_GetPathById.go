@@ -12,8 +12,7 @@ import (
 /*
 GetPathById
 Get full path of a content item with the given identifier.
- * contentId - Identifier of the content item to get the path.
-Returns types.ContentPath
+	contentId - Identifier of the content item to get the path.
 */
 func (a *APIClient) GetPathById(contentId string) (types.ContentPath, *http.Response, error) {
 	var (

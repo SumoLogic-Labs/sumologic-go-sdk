@@ -12,12 +12,11 @@ import (
 /*
 GetFolder
 Get a folder with the given identifier.
- * id - Identifier of the folder to fetch.
- * optional - nil or *types.FolderManagementApiGetFolderOpts - Optional Parameters:
-     * IsAdminMode (optional.String) - Set this to true if you want to perform the request as a Content Administrator.
-Returns types.Folder
+	id - Identifier of the folder to fetch.
+	optional - nil or *types.FolderOpts - Optional Parameters:
+		IsAdminMode (optional.String) - Set this to true if you want to perform the request as a Content Administrator.
 */
-func (a *APIClient) GetFolder(id string, localVarOptionals *types.FolderManagementApiGetFolderOpts) (types.Folder, *http.Response, error) {
+func (a *APIClient) GetFolder(id string, localVarOptionals *types.FolderOpts) (types.Folder, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}

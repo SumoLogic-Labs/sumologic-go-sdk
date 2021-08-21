@@ -12,7 +12,7 @@ import (
 /*
 DeleteRole
 Delete a role with the given identifier from the organization.
- * id - Identifier of the role to delete.
+	id - Identifier of the role to delete.
 */
 func (a *APIClient) DeleteRole(id string) (*http.Response, error) {
 	var (

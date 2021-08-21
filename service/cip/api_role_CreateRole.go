@@ -11,8 +11,7 @@ import (
 /*
 CreateRole
 Create a new role in the organization.
- * body - Information about the new role.
-Returns types.RoleModel
+	body - Information about the new role.
 */
 func (a *APIClient) CreateRole(body types.CreateRoleDefinition) (types.RoleModel, *http.Response, error) {
 	var (

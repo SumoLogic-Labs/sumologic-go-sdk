@@ -11,8 +11,7 @@ import (
 /*
 CreateSubdomain
 Create a subdomain. Only the Account Owner can create a subdomain.
- * body - The new subdomain.
-Returns types.SubdomainDefinitionResponse
+	body - The new subdomain.
 */
 func (a *APIClient) CreateSubdomain(body types.ConfigureSubdomainRequest) (types.SubdomainDefinitionResponse, *http.Response, error) {
 	var (

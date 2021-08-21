@@ -12,12 +12,11 @@ import (
 /*
 BeginAsyncDelete
 Start an asynchronous content deletion job with the given identifier.
- * id - Identifier of the content to delete. Identifiers from the Library in the Sumo user interface are provided in decimal format which is incompatible with this API. The identifier needs to be in hexadecimal format.
- * optional - nil or *types.ContentManagementApiBeginAsyncDeleteOpts - Optional Parameters:
-     * IsAdminMode (optional.String) -  Set this to true if you want to perform the request as a Content Administrator.
-Returns types.BeginAsyncJobResponse
+	id - Identifier of the content to delete. Identifiers from the Library in the Sumo user interface are provided in decimal format which is incompatible with this API. The identifier needs to be in hexadecimal format.
+	optional - nil or *types.ContentOpts - Optional Parameters:
+		IsAdminMode (optional.String) - Set this to true if you want to perform the request as a Content Administrator.
 */
-func (a *APIClient) BeginAsyncDelete(id string, localVarOptionals *types.ContentManagementApiBeginAsyncDeleteOpts) (types.BeginAsyncJobResponse, *http.Response, error) {
+func (a *APIClient) BeginAsyncDelete(id string, localVarOptionals *types.ContentOpts) (types.BeginAsyncJobResponse, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Delete")
 		localVarPostBody    interface{}

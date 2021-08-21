@@ -12,9 +12,8 @@ import (
 /*
 UpdateUser
 Update an existing user in the organization.
- * body - Information to update about the user.
- * id - Identifier of the user to update.
-Returns types.UserModel
+	body - Information to update about the user.
+	id - Identifier of the user to update.
 */
 func (a *APIClient) UpdateUser(body types.UpdateUserDefinition, id string) (types.UserModel, *http.Response, error) {
 	var (

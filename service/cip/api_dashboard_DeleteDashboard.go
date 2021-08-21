@@ -12,7 +12,7 @@ import (
 /*
 DeleteDashboard
 Delete a dashboard by the given identifier.
- * id - Identifier of the dashboard to delete.
+	id - Identifier of the dashboard to delete.
 */
 func (a *APIClient) DeleteDashboard(id string) (*http.Response, error) {
 	var (

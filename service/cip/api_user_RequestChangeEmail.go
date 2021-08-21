@@ -12,8 +12,8 @@ import (
 /*
 RequestChangeEmail
 An email with an activation link is sent to the user’s new email address. The user must click the link in the email within seven days to complete the email address change, or the link will expire.
- * body - New email address of the user.
- * id - Identifier of the user to change email address.
+	body - New email address of the user.
+	id - Identifier of the user to change email address.
 */
 func (a *APIClient) RequestChangeEmail(body types.ChangeEmailRequest, id string) (*http.Response, error) {
 	var (

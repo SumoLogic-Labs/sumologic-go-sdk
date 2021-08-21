@@ -11,7 +11,6 @@ import (
 /*
 CreateUpgradeOrDowngradeTask
 Creates a request to upgrade or downgrade a collector to a specific version.
-Returns types.UpgradeOrDowngradeTaskModel
 */
 func (a *APIClient) CreateUpgradeOrDowngradeTask(body types.CreateUpgradeOrDowngradeRequest) (types.UpgradeOrDowngradeTaskModel, *http.Response, error) {
 	var (

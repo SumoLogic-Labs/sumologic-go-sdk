@@ -12,8 +12,8 @@ import (
 /*
 DisableMfa
 Disable multi-factor authentication for given user.
- * body - Email and Password of the user to disable MFA for.
- * id - Identifier of the user to disable MFA for.
+	body - Email and Password of the user to disable MFA for.
+	id - Identifier of the user to disable MFA for.
 */
 func (a *APIClient) DisableMfa(body types.DisableMfaRequest, id string) (*http.Response, error) {
 	var (

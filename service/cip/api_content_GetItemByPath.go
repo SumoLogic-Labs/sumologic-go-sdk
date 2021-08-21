@@ -11,8 +11,7 @@ import (
 /*
 GetItemByPath
 Get a content item corresponding to the given path. The absolute path to a content item should be specified to get the item. The content library has Library folder at the root level. For items in Personal folder, the base path is /Library/Users/user@sumo.com where user@sumo.com is the email address of the user. For example if a user with email address wile@acme.com has Rockets folder inside Personal folder, the path of Rockets folder will be /Library/Users/wile@acme.com/Rockets.  For items in Admin Recommended folder, the base path is /Library/Admin Recommended. For example, given a folder Acme in Admin Recommended folder, the path will be /Library/Admin Recommended/Acme.
- * path - Path of the content item to retrieve.
-Returns types.Content
+	path - Path of the content item to retrieve.
 */
 func (a *APIClient) GetItemByPath(path string) (types.Content, *http.Response, error) {
 	var (

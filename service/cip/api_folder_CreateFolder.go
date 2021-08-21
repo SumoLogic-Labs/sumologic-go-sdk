@@ -11,12 +11,11 @@ import (
 /*
 CreateFolder
 Creates a new folder under the given parent folder.
- * body - Information about the new folder.
- * optional - nil or *types.FolderManagementApiCreateFolderOpts - Optional Parameters:
-  * IsAdminMode (optional.String) - Set this to true if you want to perform the request as a Content Administrator.
-Returns types.Folder
+	body - Information about the new folder.
+	optional - nil or *types.FolderOpts - Optional Parameters:
+		IsAdminMode (optional.String) - Set this to true if you want to perform the request as a Content Administrator.
 */
-func (a *APIClient) CreateFolder(body types.FolderDefinition, localVarOptionals *types.FolderManagementApiCreateFolderOpts) (types.Folder, *http.Response, error) {
+func (a *APIClient) CreateFolder(body types.FolderDefinition, localVarOptionals *types.FolderOpts) (types.Folder, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Post")
 		localVarPostBody    interface{}

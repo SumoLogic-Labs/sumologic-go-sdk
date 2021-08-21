@@ -12,8 +12,7 @@ import (
 /*
 GetRole
 Get a role with the given identifier in the organization.
- * id - Identifier of the role to fetch.
-Returns types.RoleModel
+	id - Identifier of the role to fetch.
 */
 func (a *APIClient) GetRole(id string) (types.RoleModel, *http.Response, error) {
 	var (

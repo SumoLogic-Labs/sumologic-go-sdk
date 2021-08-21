@@ -12,8 +12,8 @@ import (
 /*
 DeleteArchiveJob
 Delete an ingestion job with the given identifier from the organization. The delete operation is only possible for jobs with a Succeeded or Failed status.
- * sourceId - The identifier of the Archive Source.
- * id - The identifier of the ingestion job to delete.
+	sourceId - The identifier of the Archive Source.
+	id - The identifier of the ingestion job to delete.
 */
 func (a *APIClient) DeleteArchiveJob(sourceId string, id string) (*http.Response, error) {
 	var (

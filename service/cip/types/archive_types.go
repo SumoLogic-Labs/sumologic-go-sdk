@@ -43,7 +43,7 @@ type ArchiveJobsCount struct {
 	Succeeded int64 `json:"succeeded"`
 }
 
-type ArchiveManagementApiListArchiveJobsBySourceIdOpts struct {
+type ArchiveOpts struct {
 	Limit optional.Int32
 	Token optional.String
 }

@@ -15,7 +15,6 @@ Whether Sumo Logic accepts or rejects an API request depends on whether it conta
 Sumo Logic will reject:
 	1. Requests with an ORIGIN header but the allowlist is empty.
 	2. Requests with an ORIGIN header that don't match any entry in the allowlist.
-Returns types.AccessKey
 */
 func (a *APIClient) CreateAccessKey(body types.AccessKeyCreateRequest) (types.AccessKey, *http.Response, error) {
 	var (

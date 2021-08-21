@@ -12,7 +12,7 @@ import (
 /*
 DeleteToken
 Delete a token with the given identifier in the token library.
- * id - Identifier of the token to delete.
+	id - Identifier of the token to delete.
 */
 func (a *APIClient) DeleteToken(id string) (*http.Response, error) {
 	var (

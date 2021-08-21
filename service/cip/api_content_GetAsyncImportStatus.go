@@ -12,13 +12,12 @@ import (
 /*
 GetAsyncImportStatus
 Get the status of a content import job for the given job identifier.
- * folderId - The identifier of the folder to import into.
- * jobId - The identifier of the import request.
- * optional - nil or *types.ContentManagementApiGetAsyncImportStatusOpts - Optional Parameters:
-     * IsAdminMode (optional.String) - Set this to true if you want to perform the request as a Content Administrator.
-Returns types.AsyncJobStatus
+	folderId - The identifier of the folder to import into.
+	jobId - The identifier of the import request.
+	optional - nil or *types.ContentOpts - Optional Parameters:
+		IsAdminMode (optional.String) - Set this to true if you want to perform the request as a Content Administrator.
 */
-func (a *APIClient) GetAsyncImportStatus(folderId string, jobId string, localVarOptionals *types.ContentManagementApiGetAsyncImportStatusOpts) (types.AsyncJobStatus, *http.Response, error) {
+func (a *APIClient) GetAsyncImportStatus(folderId string, jobId string, localVarOptionals *types.ContentOpts) (types.AsyncJobStatus, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}

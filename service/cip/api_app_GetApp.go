@@ -12,8 +12,7 @@ import (
 /*
 GetApp
 Gets the app with the given universally unique identifier (UUID).
- * uuid - The identifier of the app to retrieve.
-Returns types.App
+	uuid - The identifier of the app to retrieve.
 */
 func (a *APIClient) GetApp(uuid string) (types.App, *http.Response, error) {
 	var (

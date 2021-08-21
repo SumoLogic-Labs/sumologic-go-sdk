@@ -12,13 +12,12 @@ import (
 /*
 BeginAsyncCopy
 Start an asynchronous content copy job with the given identifier to the destination folder. If the content item is a folder, everything under the folder is copied recursively.
- * id - The identifier of the content item to copy. Identifiers from the Library in the Sumo user interface are provided in decimal format which is incompatible with this API. The identifier needs to be in hexadecimal format.
- * destinationFolder - The identifier of the destination folder.
- * optional - nil or *types.ContentManagementApiBeginAsyncCopyOpts - Optional Parameters:
-     * IsAdminMode (optional.String) -  Set this to true if you want to perform the request as a Content Administrator.
-Returns types.BeginAsyncJobResponse
+	id - The identifier of the content item to copy. Identifiers from the Library in the Sumo user interface are provided in decimal format which is incompatible with this API. The identifier needs to be in hexadecimal format.
+	destinationFolder - The identifier of the destination folder.
+	optional - nil or *types.ContentOpts - Optional Parameters:
+		IsAdminMode (optional.String) - Set this to true if you want to perform the request as a Content Administrator.
 */
-func (a *APIClient) BeginAsyncCopy(id string, destinationFolder string, localVarOptionals *types.ContentManagementApiBeginAsyncCopyOpts) (types.BeginAsyncJobResponse, *http.Response, error) {
+func (a *APIClient) BeginAsyncCopy(id string, destinationFolder string, localVarOptionals *types.ContentOpts) (types.BeginAsyncJobResponse, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Post")
 		localVarPostBody    interface{}

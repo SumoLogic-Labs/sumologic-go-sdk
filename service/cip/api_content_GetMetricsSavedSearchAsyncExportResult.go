@@ -12,13 +12,12 @@ import (
 /*
 GetMetricsSavedSearchAsyncExportResult
 Get metrics saved search results from content export job for the given job identifier. The results from this export are incompatible with the Library import feature in the Sumo user interface.
- * contentId - The identifier of the exported content item.
- * jobId - The identifier of the asynchronous job.
- * optional - nil or *types.ContentManagementApiGetAsyncExportResultOpts - Optional Parameters:
-     * IsAdminMode (optional.String) - Set this to true if you want to perform the request as a Content Administrator.
-Returns types.MetricsSavedSearchSyncDefinition
+	contentId - The identifier of the exported content item.
+	jobId - The identifier of the asynchronous job.
+	optional - nil or *types.ContentOpts - Optional Parameters:
+		IsAdminMode (optional.String) - Set this to true if you want to perform the request as a Content Administrator.
 */
-func (a *APIClient) GetMetricsSavedSearchAsyncExportResult(contentId string, jobId string, localVarOptionals *types.ContentManagementApiGetAsyncExportResultOpts) (types.MetricsSavedSearchSyncDefinition, *http.Response, error) {
+func (a *APIClient) GetMetricsSavedSearchAsyncExportResult(contentId string, jobId string, localVarOptionals *types.ContentOpts) (types.MetricsSavedSearchSyncDefinition, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}

@@ -12,13 +12,12 @@ import (
 /*
 GetAsyncDeleteStatus
 Get the status of an asynchronous content deletion job request for the given job identifier.
- * id - Identifier of the content to delete.
- * jobId - The identifier of the asynchronous job.
- * optional - nil or *types.ContentManagementApiGetAsyncDeleteStatusOpts - Optional Parameters:
-     * IsAdminMode (optional.String) -  Set this to true if you want to perform the request as a Content Administrator.
-Returns types.AsyncJobStatus
+	id - Identifier of the content to delete.
+	jobId - The identifier of the asynchronous job.
+	optional - nil or *types.ContentOpts - Optional Parameters:
+		IsAdminMode (optional.String) -  Set this to true if you want to perform the request as a Content Administrator.
 */
-func (a *APIClient) GetAsyncDeleteStatus(id string, jobId string, localVarOptionals *types.ContentManagementApiGetAsyncDeleteStatusOpts) (types.AsyncJobStatus, *http.Response, error) {
+func (a *APIClient) GetAsyncDeleteStatus(id string, jobId string, localVarOptionals *types.ContentOpts) (types.AsyncJobStatus, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}

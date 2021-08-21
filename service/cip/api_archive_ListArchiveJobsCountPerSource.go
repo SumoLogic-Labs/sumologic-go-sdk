@@ -11,7 +11,6 @@ import (
 /*
 ListArchiveJobsCountPerSource
 Get a list of all Archive Sources with the count and status of ingestion jobs.
-Returns types.ListArchiveJobsCount
 */
 func (a *APIClient) ListArchiveJobsCountPerSource() (types.ListArchiveJobsCount, *http.Response, error) {
 	var (

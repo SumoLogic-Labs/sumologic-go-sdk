@@ -12,8 +12,7 @@ import (
 /*
 GetDashboard
 Get a dashboard by the given identifier.
- * id - UUID of the dashboard to return.
-Returns types.Dashboard
+	id - UUID of the dashboard to return.
 */
 func (a *APIClient) GetDashboard(id string) (types.Dashboard, *http.Response, error) {
 	var (

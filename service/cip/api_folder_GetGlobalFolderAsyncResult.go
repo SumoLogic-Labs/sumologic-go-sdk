@@ -12,8 +12,7 @@ import (
 /*
 GetGlobalFolderAsyncResult
 Get results from global folder job for the given job identifier.
- * jobId - The identifier of the asynchronous global folder job.
-Returns types.ContentList
+	jobId - The identifier of the asynchronous global folder job.
 */
 func (a *APIClient) GetGlobalFolderAsyncResult(jobId string) (types.ContentList, *http.Response, error) {
 	var (

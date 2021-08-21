@@ -11,7 +11,6 @@ import (
 /*
 GetAccountOwner
 Returns the user identifier of the account owner.
-Returns string
 */
 func (a *APIClient) GetAccountOwner() (string, *http.Response, error) {
 	var (

@@ -12,8 +12,7 @@ import (
 /*
 GetUser
 Get a user with the given identifier from the organization.
- * id - Identifier of user to return.
-Returns types.UserModel
+	id - Identifier of user to return.
 */
 func (a *APIClient) GetUser(id string) (types.UserModel, *http.Response, error) {
 	var (

@@ -12,12 +12,12 @@ import (
 /*
 MoveItem
 Moves an item from its current location to another folder.
- * destinationFolderId - Identifier of the destination folder.
- * id - Identifier of the item the user wants to move.
- * optional - nil or *types.ContentManagementApiMoveItemOpts - Optional Parameters:
-     * IsAdminMode (optional.String) - Set this to true if you want to perform the request as a Content Administrator.
+	destinationFolderId - Identifier of the destination folder.
+	id - Identifier of the item the user wants to move.
+	optional - nil or *types.ContentOpts - Optional Parameters:
+		IsAdminMode (optional.String) - Set this to true if you want to perform the request as a Content Administrator.
 */
-func (a *APIClient) MoveItem(destinationFolderId string, id string, localVarOptionals *types.ContentManagementApiMoveItemOpts) (*http.Response, error) {
+func (a *APIClient) MoveItem(destinationFolderId string, id string, localVarOptionals *types.ContentOpts) (*http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}

@@ -12,9 +12,8 @@ import (
 /*
 CreateArchiveJob
 Create an ingestion job to pull data from your S3 bucket.
- * body - The definition of the ingestion job to create.
- * sourceId - The identifier of the Archive Source for which the job is to be added.
-Returns types.ArchiveJob
+	body - The definition of the ingestion job to create.
+	sourceId - The identifier of the Archive Source for which the job is to be added.
 */
 func (a *APIClient) CreateArchiveJob(body types.CreateArchiveJobRequest, sourceId string) (types.ArchiveJob, *http.Response, error) {
 	var (

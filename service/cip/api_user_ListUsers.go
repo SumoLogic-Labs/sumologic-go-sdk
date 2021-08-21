@@ -11,14 +11,13 @@ import (
 /*
 ListUsers
 Get a list of all users in the organization. The response is paginated with a default limit of 100 users per page.
- * optional - nil or *types.UserManagementApiListUsersOpts - Optional Parameters:
-     * Limit (optional.Int32) -  Limit the number of users returned in the response. The number of users returned may be less than the limit.
-     * Token (optional.String) -  Continuation token to get the next page of results. A page object with the next continuation token is returned in the response body. Subsequent GET requests should specify the continuation token to get the next page of results. token is set to null when no more pages are left.
-     * SortBy (optional.String) -  Sort the list of users by the firstName, lastName, or email field.
-     * Email (optional.String) -  Find user with the given email address.
-Returns types.ListUserModelsResponse
+	optional - nil or *types.ListUsersOpts - Optional Parameters:
+		Limit (optional.Int32) -  Limit the number of users returned in the response. The number of users returned may be less than the limit.
+		Token (optional.String) -  Continuation token to get the next page of results. A page object with the next continuation token is returned in the response body. Subsequent GET requests should specify the continuation token to get the next page of results. token is set to null when no more pages are left.
+		SortBy (optional.String) -  Sort the list of users by the firstName, lastName, or email field.
+		Email (optional.String) -  Find user with the given email address.
 */
-func (a *APIClient) ListUsers(localVarOptionals *types.UserManagementApiListUsersOpts) (types.ListUserModelsResponse, *http.Response, error) {
+func (a *APIClient) ListUsers(localVarOptionals *types.ListUsersOpts) (types.ListUserModelsResponse, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}

@@ -12,9 +12,8 @@ import (
 /*
 AssignRoleToUser
 Assigns a role to a user in the organization.
- * roleId - Identifier of the role to assign.
- * userId - Identifier of the user to assign the role to.
-Returns types.RoleModel
+	roleId - Identifier of the role to assign.
+	userId - Identifier of the user to assign the role to.
 */
 func (a *APIClient) AssignRoleToUser(roleId string, userId string) (types.RoleModel, *http.Response, error) {
 	var (

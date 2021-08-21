@@ -11,7 +11,7 @@ import (
 /*
 RecoverSubdomains
 Send an email with the subdomain information for a user with the given email address.
- * email - Email address of the user to get subdomain information.
+	email - Email address of the user to get subdomain information.
 */
 func (a *APIClient) RecoverSubdomains(email string) (*http.Response, error) {
 	var (

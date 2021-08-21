@@ -12,9 +12,8 @@ import (
 /*
 UpdateAccessKey
 Updates the properties of existing accessKey by accessId. It can be used to enable or disable the access key and to update the corsHeaders list.
- * body - Information to update about the access key
- * id - The accessId of the access key to update.
-Returns types.AccessKeyPublic
+	body - Information to update about the access key
+	id - The accessId of the access key to update.
 */
 func (a *APIClient) UpdateAccessKey(body types.AccessKeyUpdateRequest, id string) (types.AccessKeyPublic, *http.Response, error) {
 	var (

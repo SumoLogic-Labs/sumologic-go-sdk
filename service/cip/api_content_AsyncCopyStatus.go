@@ -12,11 +12,12 @@ import (
 /*
 AsyncCopyStatus
 Gets the status of a copy request with the given jobId.
- * id - The identifier of the content that was copied.
- * jobId - The identifier of the asynchronous copy request job.
-Returns types.AsyncJobStatus
+	id - The identifier of the content that was copied.
+	jobId - The identifier of the asynchronous copy request job.
+	optional - nil or *types.ContentOpts - Optional Parameters:
+		IsAdminMode (optional.String) - Set this to true if you want to perform the request as a Content Administrator.
 */
-func (a *APIClient) AsyncCopyStatus(id string, jobId string, localVarOptionals *types.ContentManagementApiAsyncCopyStatusOpts) (types.AsyncJobStatus, *http.Response, error) {
+func (a *APIClient) AsyncCopyStatus(id string, jobId string, localVarOptionals *types.ContentOpts) (types.AsyncJobStatus, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}

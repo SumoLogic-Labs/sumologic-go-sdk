@@ -12,9 +12,8 @@ import (
 /*
 UpdateRole
 Update an existing role in the organization.
- * body - Information to update about the role.
- * id - Identifier of the role to update.
-Returns types.RoleModel
+	body - Information to update about the role.
+	id - Identifier of the role to update.
 */
 func (a *APIClient) UpdateRole(body types.UpdateRoleDefinition, id string) (types.RoleModel, *http.Response, error) {
 	var (

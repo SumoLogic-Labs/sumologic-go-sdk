@@ -12,8 +12,7 @@ import (
 /*
 GetUpgradeOrDowngradeTaskStatus
 Gets the status of a collector upgrade or downgrade task.
- * id - Job id of the task.
-Returns types.UpgradeOrDowngradeTaskStatusModel
+	id - Job id of the task.
 */
 func (a *APIClient) GetUpgradeOrDowngradeTaskStatus(id string) (types.UpgradeOrDowngradeTaskStatusModel, *http.Response, error) {
 	var (

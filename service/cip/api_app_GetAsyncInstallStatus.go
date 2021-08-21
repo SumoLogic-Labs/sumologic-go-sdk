@@ -12,8 +12,7 @@ import (
 /*
 GetAsyncInstallStatus
 Get the status of an asynchronous app install request for the given job identifier.
- * jobId - The identifier of the asynchronous install job.
-Returns types.AsyncJobStatus
+	jobId - The identifier of the asynchronous install job.
 */
 func (a *APIClient) GetAsyncInstallStatus(jobId string) (types.AsyncJobStatus, *http.Response, error) {
 	var (

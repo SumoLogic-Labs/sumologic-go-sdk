@@ -12,13 +12,12 @@ import (
 /*
 ListArchiveJobsBySourceId
 Get a list of all the ingestion jobs created on an Archive Source. The response is paginated with a default limit of 10 jobs per page.
- * sourceId - The identifier of an Archive Source.
- * optional - nil or *types.ArchiveManagementApiListArchiveJobsBySourceIdOpts - Optional Parameters:
-     * Limit (optional.Int32) -  Limit the number of jobs returned in the response. The number of jobs returned may be less than the limit.
-     * Token (optional.String) -  Continuation token to get the next page of results. A page object with the next continuation token is returned in the response body. Subsequent GET requests should specify the continuation token to get the next page of results. token is set to null when no more pages are left.
-Returns types.ListArchiveJobsResponse
+	sourceId - The identifier of an Archive Source.
+	optional - nil or *types.ArchiveOpts - Optional Parameters:
+		Limit (optional.Int32) - Limit the number of jobs returned in the response. The number of jobs returned may be less than the limit.
+		Token (optional.String) - Continuation token to get the next page of results. A page object with the next continuation token is returned in the response body. Subsequent GET requests should specify the continuation token to get the next page of results. token is set to null when no more pages are left.
 */
-func (a *APIClient) ListArchiveJobsBySourceId(sourceId string, localVarOptionals *types.ArchiveManagementApiListArchiveJobsBySourceIdOpts) (types.ListArchiveJobsResponse, *http.Response, error) {
+func (a *APIClient) ListArchiveJobsBySourceId(sourceId string, localVarOptionals *types.ArchiveOpts) (types.ListArchiveJobsResponse, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}

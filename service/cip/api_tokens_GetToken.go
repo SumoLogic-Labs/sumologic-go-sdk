@@ -12,8 +12,7 @@ import (
 /*
 GetToken
 Get a token with the given identifier in the token library.
- * id - Identifier of the token to return.
-Returns types.TokenBaseResponse
+	id - Identifier of the token to return.
 */
 func (a *APIClient) GetToken(id string) (types.TokenBaseResponse, *http.Response, error) {
 	var (

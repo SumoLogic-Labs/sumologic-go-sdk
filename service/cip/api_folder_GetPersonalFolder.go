@@ -11,7 +11,6 @@ import (
 /*
 GetPersonalFolder
 Get the personal folder of the current user.
-Returns types.Folder
 */
 func (a *APIClient) GetPersonalFolder() (types.Folder, *http.Response, error) {
 	var (

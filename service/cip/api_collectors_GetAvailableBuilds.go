@@ -11,7 +11,6 @@ import (
 /*
 GetAvailableBuilds
 Gets the available builds that collectors can be downgraded or upgraded to.
-Returns types.GetAvailableBuildsModel
 */
 func (a *APIClient) GetAvailableBuilds() (types.GetAvailableBuildsModel, *http.Response, error) {
 	var (

@@ -11,11 +11,10 @@ import (
 /*
 GetUpgradableCollectors
 Gets a list of installed collectors that can be upgraded.
- * optional - nil or *types.GetUpgradableCollectorsOpts - Optional Parameters:
-	* Limit (optional.Int32) - Limit the number of collectors returned in the response. The number of collectors returned may be less than the limit.
-	* Offset (optional.Int32) - Offset into the list of Collectors.
-	* ToVersion (optional.String) - Collector build to upgrade (or downgrade) to. If not specified, upgrades to the latest version.
-Returns types.ListCollectorsModel
+	optional - nil or *types.GetUpgradableCollectorsOpts - Optional Parameters:
+		Limit (optional.Int32) - Limit the number of collectors returned in the response. The number of collectors returned may be less than the limit.
+		Offset (optional.Int32) - Offset into the list of Collectors.
+		ToVersion (optional.String) - Collector build to upgrade (or downgrade) to. If not specified, upgrades to the latest version.
 */
 func (a *APIClient) GetUpgradableCollectors(localVarOptionals *types.GetUpgradableCollectorsOpts) (types.ListCollectorsModel, *http.Response, error) {
 	var (

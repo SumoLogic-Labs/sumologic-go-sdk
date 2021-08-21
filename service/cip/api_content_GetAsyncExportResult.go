@@ -14,13 +14,12 @@ GetAsyncExportResult
 Get results from content export job for the given job identifier. The results from this export are incompatible with the Library import feature in the Sumo user interface.
 You can use this function to find out type of content was exported and use one of the following functions to return the appropriate data for the content type: GetFolderAsyncExportResult,
 GetDashboardAsyncExportResult, GetMewboardAsyncExportResult, GetSavedSearchAsyncExportResult, GetMetricsSavedSearchAsyncExportResult, GetMetricsSearchAsyncExportResult, GetLookupTableAsyncExportResult.
- * contentId - The identifier of the exported content item.
- * jobId - The identifier of the asynchronous job.
- * optional - nil or *types.ContentManagementApiGetAsyncExportResultOpts - Optional Parameters:
-     * IsAdminMode (optional.String) - Set this to true if you want to perform the request as a Content Administrator.
-Returns types.ContentSyncDefinition
+	contentId - The identifier of the exported content item.
+	jobId - The identifier of the asynchronous job.
+	optional - nil or *types.ContentOpts - Optional Parameters:
+		IsAdminMode (optional.String) - Set this to true if you want to perform the request as a Content Administrator.
 */
-func (a *APIClient) GetAsyncExportResult(contentId string, jobId string, localVarOptionals *types.ContentManagementApiGetAsyncExportResultOpts) (types.ContentSyncDefinition, *http.Response, error) {
+func (a *APIClient) GetAsyncExportResult(contentId string, jobId string, localVarOptionals *types.ContentOpts) (types.ContentSyncDefinition, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}

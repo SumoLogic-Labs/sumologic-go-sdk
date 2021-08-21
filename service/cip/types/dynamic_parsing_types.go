@@ -30,7 +30,7 @@ type DynamicRuleDefinition struct {
 	Enabled bool `json:"enabled"`
 }
 
-type DynamicParsingRuleManagementApiListDynamicParsingRulesOpts struct {
+type DynamicParsingRuleOpts struct {
 	Limit optional.Int32
 	Token optional.String
 }

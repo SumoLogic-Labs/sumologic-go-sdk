@@ -12,9 +12,8 @@ import (
 /*
 UpdateDynamicParsingRule
 Update an existing dynamic parsing rule. All properties specified in the request are replaced. Missing properties are set to their default values.
- * body - Information to update about the dynamic parsing rule.
- * id - Identifier of the dynamic parsing rule to update.
-Returns types.DynamicRule
+	body - Information to update about the dynamic parsing rule.
+	id - Identifier of the dynamic parsing rule to update.
 */
 func (a *APIClient) UpdateDynamicParsingRule(body types.DynamicRuleDefinition, id string) (types.DynamicRule, *http.Response, error) {
 	var (

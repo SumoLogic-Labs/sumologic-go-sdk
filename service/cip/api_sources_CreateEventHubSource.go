@@ -12,9 +12,8 @@ import (
 /*
 CreateEventHubSource
 Create an Azure Event Hub source.
- * body - The definition of the Event Hub source.
- * collectorId - The identifier of the Sumo Logic collector to assign the source to.
-Returns types.EventHubModel
+	body - The definition of the Event Hub source.
+	collectorId - The identifier of the Sumo Logic collector to assign the source to.
 */
 func (a *APIClient) CreateEventHubSource(body types.CreateEventHubSourceRequest, collectorId string) (types.EventHubModel, *http.Response, error) {
 	var (

@@ -12,8 +12,7 @@ import (
 /*
 GetDynamicParsingRule
 Get a dynamic parsing rule with the given identifier.
- * id - Identifier of dynamic parsing rule to return.
-Returns types.DynamicRule
+	id - Identifier of dynamic parsing rule to return.
 */
 func (a *APIClient) GetDynamicParsingRule(id string) (types.DynamicRule, *http.Response, error) {
 	var (

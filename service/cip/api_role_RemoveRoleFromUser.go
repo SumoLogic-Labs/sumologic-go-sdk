@@ -12,8 +12,8 @@ import (
 /*
 RemoveRoleFromUser
 Remove a role from a user in the organization.
- * roleId - Identifier of the role to delete.
- * userId - Identifier of the user to remove the role from.
+	roleId - Identifier of the role to delete.
+	userId - Identifier of the user to remove the role from.
 */
 func (a *APIClient) RemoveRoleFromUser(roleId string, userId string) (*http.Response, error) {
 	var (

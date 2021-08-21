@@ -12,13 +12,12 @@ import (
 /*
 GetAsyncExportStatus
 Get the status of an asynchronous content export request for the given job identifier. On success, use the [getExportResult](#operation/getAsyncExportResult) endpoint to get the result of the export job.
- * contentId - The identifier of the exported content item.
- * jobId - The identifier of the asynchronous export job.
- * optional - nil or *types.ContentManagementApiGetAsyncExportStatusOpts - Optional Parameters:
-     * IsAdminMode (optional.String) - Set this to true if you want to perform the request as a Content Administrator.
-Returns types.AsyncJobStatus
+	contentId - The identifier of the exported content item.
+	jobId - The identifier of the asynchronous export job.
+	optional - nil or *types.ContentManagementApiGetAsyncExportStatusOpts - Optional Parameters:
+		IsAdminMode (optional.String) - Set this to true if you want to perform the request as a Content Administrator.
 */
-func (a *APIClient) GetAsyncExportStatus(contentId string, jobId string, localVarOptionals *types.ContentManagementApiGetAsyncExportStatusOpts) (types.AsyncJobStatus, *http.Response, error) {
+func (a *APIClient) GetAsyncExportStatus(contentId string, jobId string, localVarOptionals *types.ContentOpts) (types.AsyncJobStatus, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}

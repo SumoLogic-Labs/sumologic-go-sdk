@@ -12,13 +12,12 @@ import (
 /*
 UpdateFolder
 Update an existing folder with the given identifier.
- * body - Information to update about the folder.
- * id - Identifier of the folder to update.
- * optional - nil or *types.FolderManagementApiUpdateFolderOpts - Optional Parameters:
-     * IsAdminMode (optional.String) - Set this to true if you want to perform the request as a Content Administrator.
-Returns types.Folder
+	body - Information to update about the folder.
+	id - Identifier of the folder to update.
+	optional - nil or *types.FolderOpts - Optional Parameters:
+		IsAdminMode (optional.String) - Set this to true if you want to perform the request as a Content Administrator.
 */
-func (a *APIClient) UpdateFolder(body types.UpdateFolderRequest, id string, localVarOptionals *types.FolderManagementApiUpdateFolderOpts) (types.Folder, *http.Response, error) {
+func (a *APIClient) UpdateFolder(body types.UpdateFolderRequest, id string, localVarOptionals *types.FolderOpts) (types.Folder, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Put")
 		localVarPostBody    interface{}

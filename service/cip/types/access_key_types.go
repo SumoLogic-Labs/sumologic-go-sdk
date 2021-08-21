@@ -31,7 +31,7 @@ type AccessKeyCreateRequest struct {
 	CorsHeaders []string `json:"corsHeaders,omitempty"`
 }
 
-type AccessKeyManagementApiListAccessKeysOpts struct {
+type AccessKeyOpts struct {
 	Limit optional.Int32
 	Token optional.String
 }

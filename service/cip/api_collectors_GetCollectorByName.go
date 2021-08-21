@@ -12,8 +12,7 @@ import (
 /*
 GetCollectorByName
 Gets information about a collector by its name.
- * name - The name of the collector
-Returns types.CollectorModel
+	name - The name of the collector
 */
 func (a *APIClient) GetCollectorByName(name string) (types.CollectorModel, *http.Response, error) {
 	var (

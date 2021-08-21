@@ -7,6 +7,13 @@ type availableBuildsDefinition struct {
 	Latest  bool   `json:"latest"`
 }
 
+type CollectorIdentity struct {
+	// Unique identifier for the Collector.
+	Id string `json:"id"`
+	// The name of the Collector.
+	Name string `json:"name"`
+}
+
 type DeleteOfflineCollectorsOpts struct {
 	AliveBeforeDays optional.Int32
 }
@@ -19,6 +26,13 @@ type GetUpgradableCollectorsOpts struct {
 
 type GetAvailableBuildsModel struct {
 	Targets []availableBuildsDefinition `json:"targets"`
+}
+
+type ListCollectorIdentitiesResponse struct {
+	// List of Collector identities.
+	Data []CollectorIdentity `json:"data"`
+	// Next continuation token.
+	Next string `json:"next,omitempty"`
 }
 
 type ListCollectorsOpts struct {

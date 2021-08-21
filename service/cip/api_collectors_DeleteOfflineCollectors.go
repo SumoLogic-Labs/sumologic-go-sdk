@@ -11,8 +11,8 @@ import (
 /*
 DeleteOfflineCollectors
 Deletes offline collectors from the organization.
- * optional - nil or *types.DeleteOfflineCollectorsOpts - Optional Parameters:
- 	* AliveBeforeDays (optional.Int32) - Minimum number of days the Collectors have been offline.
+	optional - nil or *types.DeleteOfflineCollectorsOpts - Optional Parameters:
+ 		AliveBeforeDays (optional.Int32) - Minimum number of days the Collectors have been offline.
 */
 func (a *APIClient) DeleteOfflineCollectors(localVarOptionals *types.DeleteOfflineCollectorsOpts) (*http.Response, error) {
 	var (

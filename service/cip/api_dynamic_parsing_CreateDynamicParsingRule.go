@@ -11,8 +11,7 @@ import (
 /*
 CreateDynamicParsingRule
 Create a new dynamic parsing rule.
- * body - Information about the new dynamic parsing rule.
-Returns type.DynamicRule
+	body - Information about the new dynamic parsing rule.
 */
 func (a *APIClient) CreateDynamicParsingRule(body types.DynamicRuleDefinition) (types.DynamicRule, *http.Response, error) {
 	var (

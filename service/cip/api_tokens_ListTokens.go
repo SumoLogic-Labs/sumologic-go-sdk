@@ -11,7 +11,6 @@ import (
 /*
 ListTokens
 Get a list of all tokens in the token library.
-Returns types.ListTokensBaseResponse
 */
 func (a *APIClient) ListTokens() (types.ListTokensBaseResponse, *http.Response, error) {
 	var (

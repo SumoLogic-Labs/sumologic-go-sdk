@@ -12,7 +12,7 @@ import (
 /*
 ResetPassword
 Reset a user's password.
- * id - Identifier of the user to reset password.
+	id - Identifier of the user to reset password.
 */
 func (a *APIClient) ResetPassword(id string) (*http.Response, error) {
 	var (

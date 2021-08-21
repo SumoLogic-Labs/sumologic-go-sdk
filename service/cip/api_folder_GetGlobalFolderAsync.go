@@ -11,11 +11,10 @@ import (
 /*
 GetGlobalFolderAsync
 Schedule an asynchronous job to get global folder. Global folder contains all content items that a user has permissions to view in the organization.
- * optional - nil or *types.FolderManagementApiGetGlobalFolderAsyncOpts - Optional Parameters:
-     * IsAdminMode (optional.String) - Set this to true if you want to perform the request as a Content Administrator.
-Returns types.BeginAsyncJobResponse
+	optional - nil or *types.FolderOpts - Optional Parameters:
+		IsAdminMode (optional.String) - Set this to true if you want to perform the request as a Content Administrator.
 */
-func (a *APIClient) GetGlobalFolderAsync(localVarOptionals *types.FolderManagementApiGetGlobalFolderAsyncOpts) (types.BeginAsyncJobResponse, *http.Response, error) {
+func (a *APIClient) GetGlobalFolderAsync(localVarOptionals *types.FolderOpts) (types.BeginAsyncJobResponse, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}

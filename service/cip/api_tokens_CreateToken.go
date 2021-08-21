@@ -11,8 +11,7 @@ import (
 /*
 CreateToken
 Create a token in the token library.
- * body - Information about the token to create.
-Returns types.TokenBaseResponse
+	body - Information about the token to create.
 */
 func (a *APIClient) CreateToken(body types.TokenBaseDefinition) (types.TokenBaseResponse, *http.Response, error) {
 	var (

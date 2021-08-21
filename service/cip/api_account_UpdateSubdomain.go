@@ -11,8 +11,7 @@ import (
 /*
 UpdateSubdomain
 Update a subdomain. Only the Account Owner can update the subdomain.
- * body - The new subdomain.
-Returns types.SubdomainDefinitionResponse
+	body - The new subdomain.
 */
 func (a *APIClient) UpdateSubdomain(body types.ConfigureSubdomainRequest) (types.SubdomainDefinitionResponse, *http.Response, error) {
 	var (
