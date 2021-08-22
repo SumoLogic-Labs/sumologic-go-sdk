@@ -97,6 +97,7 @@ func (a *APIClient) CreateExtractionRule(body types.ExtractionRuleDefinition) (t
 			fmt.Println(v.Errors[0].Code)
 			fmt.Println(v.Errors[0].Detail)
 			fmt.Println(&v.Errors[0].Meta)
+			RetrieveMetadata(&v.Errors[0].Meta)
 			fmt.Println(v.Errors[0].Message)
 			fmt.Println("Error from decode")
 			fmt.Println(err)
@@ -110,4 +111,13 @@ func (a *APIClient) CreateExtractionRule(body types.ExtractionRuleDefinition) (t
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
+}
+
+func RetrieveMetadata(meta interface{}) {
+	switch v := meta.(type) {
+	case string:
+		fmt.Println(v)
+	default:
+		fmt.Println("Unknown")
+	}
 }
