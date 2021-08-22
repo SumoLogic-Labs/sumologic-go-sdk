@@ -38,7 +38,7 @@ type ExtractionRuleDefinition struct {
 	Enabled bool `json:"enabled,omitempty"`
 }
 
-type ExtractionRuleManagementApiListExtractionRulesOpts struct {
+type ExtractionRuleOpts struct {
 	Limit optional.Int32
 	Token optional.String
 }

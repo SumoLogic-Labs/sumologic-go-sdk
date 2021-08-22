@@ -11,11 +11,11 @@ import (
 /*
 ListExtractionRules
 Get a list of all field extraction rules. The response is paginated with a default limit of 100 field extraction rules per page.
-	optional - nil or *types.ExtractionRuleManagementApiListExtractionRulesOpts - Optional Parameters:
+	optional - nil or *types.ExtractionRuleOpts - Optional Parameters:
 		Limit (optional.Int32) -  Limit the number of field extraction rules returned in the response. The number of field extraction rules returned may be less than the limit.
      	Token (optional.String) -  Continuation token to get the next page of results. A page object with the next continuation token is returned in the response body. Subsequent GET requests should specify the continuation token to get the next page of results.
 */
-func (a *APIClient) ListExtractionRules(localVarOptionals *types.ExtractionRuleManagementApiListExtractionRulesOpts) (types.ListExtractionRulesResponse, *http.Response, error) {
+func (a *APIClient) ListExtractionRules(localVarOptionals *types.ExtractionRuleOpts) (types.ListExtractionRulesResponse, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}
