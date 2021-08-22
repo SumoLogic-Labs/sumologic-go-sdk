@@ -86,10 +86,12 @@ func (a *APIClient) CreateExtractionRule(body types.ExtractionRuleDefinition) (t
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
-		} else if localVarHttpResponse.StatusCode == 400 {
+		} else if localVarHttpResponse.StatusCode >= 400 {
 			fmt.Println("we are in the right spot")
 			var v types.ErrorResponse
 			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			fmt.Println("New error")
+			fmt.Println(err)
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
