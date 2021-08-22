@@ -11,11 +11,11 @@ import (
 /*
 ListAllHealthEvents
 Get a list of all the unresolved health events in your account.
-	optional - nil or *types.HealthEventsApiListAllHealthEventsOpts - Optional Parameters:
+	optional - nil or *types.HealthEventsOpts - Optional Parameters:
 		Limit (optional.Int32) - Limit the number of health events returned in the response. The number of health events returned may be less than the limit.
      	Token (optional.String) - Continuation token to get the next page of results. A page object with the next continuation token is returned in the response body. Subsequent GET requests should specify the continuation token to get the next page of results. token is set to null when no more pages are left.
 */
-func (a *APIClient) ListAllHealthEvents(localVarOptionals *types.HealthEventsApiListAllHealthEventsOpts) (types.ListHealthEventResponse, *http.Response, error) {
+func (a *APIClient) ListAllHealthEvents(localVarOptionals *types.HealthEventsOpts) (types.ListHealthEventResponse, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}

@@ -20,7 +20,7 @@ type HealthEvent struct {
 	SeverityLevel string `json:"severityLevel"`
 }
 
-type HealthEventsApiListAllHealthEventsOpts struct {
+type HealthEventsOpts struct {
 	Limit optional.Int32
 	Token optional.String
 }
