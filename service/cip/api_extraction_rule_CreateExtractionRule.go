@@ -96,7 +96,6 @@ func (a *APIClient) CreateExtractionRule(body types.ExtractionRuleDefinition) (t
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
