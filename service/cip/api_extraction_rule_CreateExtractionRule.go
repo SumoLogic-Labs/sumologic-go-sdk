@@ -1,7 +1,6 @@
 package cip
 
 import (
-	"fmt"
 	"github.com/wizedkyle/sumologic-go-sdk/service/cip/types"
 	"io/ioutil"
 	"net/http"
@@ -72,7 +71,6 @@ func (a *APIClient) CreateExtractionRule(body types.ExtractionRuleDefinition) (t
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	} else if localVarHttpResponse.StatusCode >= 300 {
-		fmt.Println(string(localVarBody))
 		newErr := GenericSwaggerError{
 			body:  localVarBody,
 			error: localVarHttpResponse.Status,
@@ -87,26 +85,20 @@ func (a *APIClient) CreateExtractionRule(body types.ExtractionRuleDefinition) (t
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
 		} else if localVarHttpResponse.StatusCode >= 400 {
-			fmt.Println("we are in the right spot")
-			fmt.Println("status of v")
 			var v types.ErrorResponse
-			fmt.Println(v)
 			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
-			fmt.Println("New error")
-			fmt.Println(v)
-			fmt.Println(v.Errors[0].Code)
-			fmt.Println(v.Errors[0].Detail)
-			fmt.Println(v.Errors[0].Meta.Reason)
-			fmt.Println(v.Errors[0].Message)
-			fmt.Println("Error from decode")
-			fmt.Println(err)
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
-			newErr.error = v.Errors[0].Message
+			if v.Errors[0].Meta.Reason != "" {
+				newErr.error = v.Errors[0].Message + ": " + v.Errors[0].Meta.Reason
+			} else {
+				newErr.error = v.Errors[0].Message
+			}
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
+		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
