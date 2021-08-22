@@ -12,25 +12,25 @@ You can find further information about the Sumo Logic APIs in their [documentati
 | Account | :white_check_mark: | |
 | Apps (Beta) | :white_check_mark: | |
 | Archive Ingestion | :white_check_mark: | |
-| Content | | |
-| Collectors | | |
-| Dashboards | | |
-| Dynamic Parsing | | |
-| Field Extraction Rules | | |
-| Field Management | | |
+| Content | :white_check_mark: | |
+| Collectors | :white_check_mark: | |
+| Dashboards | :white_check_mark: | |
+| Dynamic Parsing | :white_check_mark: | |
+| Field Extraction Rules | :white_check_mark: | |
+| Field Management | :white_check_mark: | |
 | Folders | :white_check_mark: | |
-| Health Events | | |
-| Ingest Budgets | | |
-| Ingest Budgets v2 | | |
-| Lookup Tables | | | 
+| Health Events | :white_check_mark: | |
+| Ingest Budgets | :white_check_mark: | |
+| Ingest Budgets v2 | :white_check_mark: | |
+| Lookup Tables | :white_check_mark: | | 
 | Monitors | | |
-| Partitions | | |
+| Partitions | :white_check_mark: | |
 | Password Policy | | |
 | Permissions | | |
 | Roles | :white_check_mark: | |
 | SAML Configuration | | |
 | Scheduled Views | | |
-| Service Allowlist | | |
+| Service Allowlist | :white_check_mark: | |
 | Sources | | |
 | Tokens | :white_check_mark: | |
 | Users | :white_check_mark: | |
