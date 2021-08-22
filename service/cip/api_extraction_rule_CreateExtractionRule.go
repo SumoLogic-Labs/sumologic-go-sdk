@@ -104,7 +104,7 @@ func (a *APIClient) CreateExtractionRule(body types.ExtractionRuleDefinition) (t
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
-			newErr.model = v
+			newErr.error = v.Errors[0].Message
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 	}
