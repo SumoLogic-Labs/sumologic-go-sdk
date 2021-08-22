@@ -49,9 +49,9 @@ type ResourceIdentity struct {
 	// The name of the collector this source belongs to (default is "Unknown"). Only required when Type_ is set to `Collector`.
 	CollectorName string `json:"collectorName,omitempty"`
 	// The unique field value of the ingest budget v1. This will be empty for v2 budgets. (default is "Unknown"). Only required when Type_ is set to `IngestBudget`.
-	IngestBudgetFieldValue string `json:"ingestBudgetFieldValue"`
+	IngestBudgetFieldValue string `json:"ingestBudgetFieldValue,omitempty"`
 	// The scope of the ingest budget v2. This will be empty for v1 budgets. (default is "Unknown"). Only required when Type_ is set to `IngestBudget`.
-	Scope string `json:"scope"`
+	Scope string `json:"scope,omitempty"`
 }
 
 type TrackerIdentity struct {
