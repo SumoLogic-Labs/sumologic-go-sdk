@@ -9,15 +9,14 @@ import (
 )
 
 /*
-ListAllHealthEventsForResources
-Get a list of all the unresolved events in your account that belong to the supplied resource identifiers.
-If you want to retrieve health events for a Source or Ingest Budget use the following functions: ListSourceHealthEvents or ListIngestBudgetHealthEvents
+ListIngestBudgetHealthEvents
+Get a list of unresolved Ingest Budget health events in your account that belong to the supplied resource identifiers.
 	body - Resource identifiers to request health events from.
 	optional - nil or *types.HealthEventsOpts - Optional Parameters:
 		Limit (optional.Int32) - Limit the number of health events returned in the response. The number of health events returned may be less than the limit.
      	Token (optional.String) - Continuation token to get the next page of results. A page object with the next continuation token is returned in the response body. Subsequent GET requests should specify the continuation token to get the next page of results. token is set to null when no more pages are left.
 */
-func (a *APIClient) ListAllHealthEventsForResources(body types.ResourceIdentities, localVarOptionals *types.HealthEventsOpts) (types.ListHealthEventResponse, *http.Response, error) {
+func (a *APIClient) ListIngestBudgetHealthEvents(body types.IngestBudgetIdentities, localVarOptionals *types.HealthEventsOpts) (types.ListHealthEventResponse, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Post")
 		localVarPostBody    interface{}
