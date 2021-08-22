@@ -94,6 +94,10 @@ func (a *APIClient) CreateExtractionRule(body types.ExtractionRuleDefinition) (t
 			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			fmt.Println("New error")
 			fmt.Println(v)
+			fmt.Println(v.Errors[0].Code)
+			fmt.Println(v.Errors[0].Detail)
+			fmt.Println(v.Errors[0].Meta)
+			fmt.Println(v.Errors[0].Message)
 			fmt.Println("Error from decode")
 			fmt.Println(err)
 			if err != nil {
