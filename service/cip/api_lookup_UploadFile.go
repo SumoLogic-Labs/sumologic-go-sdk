@@ -3,6 +3,7 @@ package cip
 import (
 	"fmt"
 	"github.com/wizedkyle/sumologic-go-sdk/service/cip/types"
+	"io"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -61,7 +62,10 @@ func (a *APIClient) UploadFile(file *os.File, id string, localVarOptionals *type
 	}
 	localVarFile := file
 	if localVarFile != nil {
-		fbs, _ := ioutil.ReadAll(localVarFile)
+		fbs, err := io.ReadAll(localVarFile)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
 		localVarFileBytes = fbs
 		localVarFileName = localVarFile.Name()
 		localVarFile.Close()
