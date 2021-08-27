@@ -14,7 +14,10 @@ Get a list of all partitions in the organization. The response is paginated with
 	optional - nil or *types.PartitionOpts - Optional Parameters:
 		Limit (optional.Int32) - Limit the number of partitions returned in the response. The number of partitions returned may be less than the limit.
      	Token (optional.String) - Continuation token to get the next page of results. A page object with the next continuation token is returned in the response body. Subsequent GET requests should specify the continuation token to get the next page of results. token is set to null when no more pages are left.
-     	ViewTypes (optional.Interface of []string) - The type of partitions to retrieve. Valid values are:   1. DefaultView To get General Index partition.   2. Partition To get user defined views/partitions.   3. AuditIndex: To get the internal audit indexes. Eg. sumologic_audit_events.  More than one type of partitions can be retrieved in same request.
+     	ViewTypes (optional.Interface of []string) - The type of partitions to retrieve. More than one type of partitions can be retrieved in same request. Valid values are:
+			DefaultView To get General Index partition.
+			Partition To get user defined views/partitions.
+			AuditIndex: To get the internal audit indexes.
 */
 func (a *APIClient) ListPartitions(localVarOptionals *types.PartitionOpts) (types.ListPartitionsResponse, *http.Response, error) {
 	var (
