@@ -87,7 +87,7 @@ func (a *APIClient) UpdateEventHubSource(body types.UpdateEventHubSourceRequest,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
-			var v types.ExtractionRule
+			var v types.EventHubModel
 			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

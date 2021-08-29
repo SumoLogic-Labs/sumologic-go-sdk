@@ -85,7 +85,7 @@ func (a *APIClient) GetAsyncExportResult(contentId string, jobId string, localVa
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
-			var v types.ExtractionRule
+			var v types.ContentSyncDefinition
 			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

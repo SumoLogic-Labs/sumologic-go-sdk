@@ -79,7 +79,7 @@ func (a *APIClient) UpdateRole(body types.UpdateRoleDefinition, id string) (type
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
-			var v types.ExtractionRule
+			var v types.RoleModel
 			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

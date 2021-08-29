@@ -117,7 +117,7 @@ func (a *APIClient) UpdateInstalledCollector(body types.UpdateInstalledCollector
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
-			var v types.ExtractionRule
+			var v types.CollectorModel
 			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

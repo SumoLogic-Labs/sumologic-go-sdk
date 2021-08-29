@@ -76,7 +76,7 @@ func (a *APIClient) GetIngestBudgetV2(id string) (types.IngestBudgetV2, *http.Re
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
-			var v types.ExtractionRule
+			var v types.IngestBudgetV2
 			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

@@ -73,7 +73,7 @@ func (a *APIClient) GetStatus() (types.AccountStatusResponse, *http.Response, er
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
-			var v types.ExtractionRule
+			var v types.AccountStatusResponse
 			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
