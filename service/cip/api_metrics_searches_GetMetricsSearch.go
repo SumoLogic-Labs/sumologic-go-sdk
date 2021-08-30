@@ -1,6 +1,7 @@
 package cip
 
 import (
+	"fmt"
 	"github.com/wizedkyle/sumologic-go-sdk/service/cip/types"
 	"io/ioutil"
 	"net/http"
@@ -9,20 +10,22 @@ import (
 )
 
 /*
-GetAuditPolicy
-Get the Audit policy. This policy specifies whether audit records for your account are enabled. You can access details about reported account events in the Sumo Logic Audit Index. [Learn More](https://help.sumologic.com/Manage/Security/Audit-Index)
+GetMetricsSearch
+Returns a metrics search with the specified identifier.
+	id - Identifier of the metrics search.
 */
-func (a *APIClient) GetAuditPolicy() (types.AuditPolicy, *http.Response, error) {
+func (a *APIClient) GetMetricsSearch(id string) (types.MetricsSearchInstance, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}
 		localVarFileName    string
 		localVarFileBytes   []byte
-		localVarReturnValue types.AuditPolicy
+		localVarReturnValue types.MetricsSearchInstance
 	)
 
 	// create path and map variables
-	localVarPath := a.Cfg.BasePath + "/v1/policies/audit"
+	localVarPath := a.Cfg.BasePath + "/v1/metricsSearches/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -73,7 +76,7 @@ func (a *APIClient) GetAuditPolicy() (types.AuditPolicy, *http.Response, error) 
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
-			var v types.AuditPolicy
+			var v types.MetricsSearchInstance
 			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

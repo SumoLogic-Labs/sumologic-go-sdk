@@ -1,6 +1,7 @@
 package cip
 
 import (
+	"fmt"
 	"github.com/wizedkyle/sumologic-go-sdk/service/cip/types"
 	"io/ioutil"
 	"net/http"
@@ -9,25 +10,29 @@ import (
 )
 
 /*
-GetAuditPolicy
-Get the Audit policy. This policy specifies whether audit records for your account are enabled. You can access details about reported account events in the Sumo Logic Audit Index. [Learn More](https://help.sumologic.com/Manage/Security/Audit-Index)
+GetConnection
+Get a connection with the given identifier.
+	id - Identifier of connection to return.
+	type_ - Type of connection to return. Valid values are WebhookConnection, ServiceNowConnections.
 */
-func (a *APIClient) GetAuditPolicy() (types.AuditPolicy, *http.Response, error) {
+func (a *APIClient) GetConnection(id string, type_ string) (types.Connection, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}
 		localVarFileName    string
 		localVarFileBytes   []byte
-		localVarReturnValue types.AuditPolicy
+		localVarReturnValue types.Connection
 	)
 
 	// create path and map variables
-	localVarPath := a.Cfg.BasePath + "/v1/policies/audit"
+	localVarPath := a.Cfg.BasePath + "/v1/connections/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	localVarQueryParams.Add("type", parameterToString(type_, ""))
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
 
@@ -73,7 +78,7 @@ func (a *APIClient) GetAuditPolicy() (types.AuditPolicy, *http.Response, error) 
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
-			var v types.AuditPolicy
+			var v types.Connection
 			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

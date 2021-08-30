@@ -9,27 +9,28 @@ import (
 )
 
 /*
-GetAuditPolicy
-Get the Audit policy. This policy specifies whether audit records for your account are enabled. You can access details about reported account events in the Sumo Logic Audit Index. [Learn More](https://help.sumologic.com/Manage/Security/Audit-Index)
+CreateWebhookConnection
+Create a new webhook connection in the organization.
+	body - Information about the new webhook connection.
 */
-func (a *APIClient) GetAuditPolicy() (types.AuditPolicy, *http.Response, error) {
+func (a *APIClient) CreateWebhookConnection(body types.WebhookDefinition) (types.WebhookConnection, *http.Response, error) {
 	var (
-		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarHttpMethod  = strings.ToUpper("Post")
 		localVarPostBody    interface{}
 		localVarFileName    string
 		localVarFileBytes   []byte
-		localVarReturnValue types.AuditPolicy
+		localVarReturnValue types.WebhookConnection
 	)
 
 	// create path and map variables
-	localVarPath := a.Cfg.BasePath + "/v1/policies/audit"
+	localVarPath := a.Cfg.BasePath + "/v1/connections"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHttpContentTypes := []string{}
+	localVarHttpContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
@@ -45,6 +46,8 @@ func (a *APIClient) GetAuditPolicy() (types.AuditPolicy, *http.Response, error) 
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
+	// body params
+	localVarPostBody = &body
 	r, err := a.prepareRequest(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -73,7 +76,7 @@ func (a *APIClient) GetAuditPolicy() (types.AuditPolicy, *http.Response, error) 
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
-			var v types.AuditPolicy
+			var v types.WebhookConnection
 			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

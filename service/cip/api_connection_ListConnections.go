@@ -9,25 +9,34 @@ import (
 )
 
 /*
-GetAuditPolicy
-Get the Audit policy. This policy specifies whether audit records for your account are enabled. You can access details about reported account events in the Sumo Logic Audit Index. [Learn More](https://help.sumologic.com/Manage/Security/Audit-Index)
+ListConnections
+Get a list of all connections in the organization. The response is paginated with a default limit of 100 connections per page.
+	optional - nil or *types.ConnectionOpts - Optional Parameters:
+		Limit (optional.Int32) - Limit the number of connections returned in the response. The number of connections returned may be less than the limit.
+		Token (optional.String) - Continuation token to get the next page of results. A page object with the next continuation token is returned in the response body. Subsequent GET requests should specify the continuation token to get the next page of results. token is set to null when no more pages are left.
 */
-func (a *APIClient) GetAuditPolicy() (types.AuditPolicy, *http.Response, error) {
+func (a *APIClient) ListConnections(localVarOptionals *types.ConnectionsOpts) (types.ListConnectionsResponse, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}
 		localVarFileName    string
 		localVarFileBytes   []byte
-		localVarReturnValue types.AuditPolicy
+		localVarReturnValue types.ListConnectionsResponse
 	)
 
 	// create path and map variables
-	localVarPath := a.Cfg.BasePath + "/v1/policies/audit"
+	localVarPath := a.Cfg.BasePath + "/v1/connections"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.Limit.IsSet() {
+		localVarQueryParams.Add("limit", parameterToString(localVarOptionals.Limit.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Token.IsSet() {
+		localVarQueryParams.Add("token", parameterToString(localVarOptionals.Token.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
 
@@ -73,7 +82,7 @@ func (a *APIClient) GetAuditPolicy() (types.AuditPolicy, *http.Response, error) 
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
-			var v types.AuditPolicy
+			var v types.ListConnectionsResponse
 			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

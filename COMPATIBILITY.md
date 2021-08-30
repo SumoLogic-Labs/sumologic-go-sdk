@@ -12,7 +12,7 @@ You can find further information about the Sumo Logic APIs in their [documentati
 | Account | :white_check_mark: | |
 | Apps (Beta) | :white_check_mark: | |
 | Archive Ingestion | :white_check_mark: | |
-| Connections (Beta) | | |
+| Connections (Beta) | :white_check_mark: | |
 | Content | :white_check_mark: | |
 | Collectors | :white_check_mark: | |
 | Dashboards | :white_check_mark: | |
@@ -25,20 +25,20 @@ You can find further information about the Sumo Logic APIs in their [documentati
 | Ingest Budgets v2 | :white_check_mark: | |
 | Log Search Estimated Usage | :white_check_mark: | |
 | Lookup Tables | :white_check_mark: | | 
-| Metrics Searches (Beta) | | |
+| Metrics Searches (Beta) | :white_check_mark: | |
 | Monitors | | |
 | Organizations | | |
 | Partitions | :white_check_mark: | |
-| Password Policy | | |
-| Permissions | | |
-| Policies | | |
+| Password Policy | :white_check_mark: | |
+| Permissions | :white_check_mark: | |
+| Policies | :white_check_mark: | |
 | Roles | :white_check_mark: | |
 | SAML Configuration | | |
-| Scheduled Views | | |
+| Scheduled Views | :white_check_mark: | |
 | Service Allowlist | :white_check_mark: | |
 | Sources | | |
 | Tokens | :white_check_mark: | |
-| Transformation Rules (Beta) | | |
+| Transformation Rules (Beta) | :white_check_mark: | |
 | Users | :white_check_mark: | |
 
 ## Sumo Logic Sources Support
