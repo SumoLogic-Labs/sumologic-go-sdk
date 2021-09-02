@@ -28,23 +28,7 @@ type FolderDefinition struct {
 	ParentId string `json:"parentId"`
 }
 
-type FolderManagementApiCreateFolderOpts struct {
-	IsAdminMode optional.String
-}
-
-type FolderManagementApiGetAdminRecommendedFolderAsyncOpts struct {
-	IsAdminMode optional.String
-}
-
-type FolderManagementApiGetFolderOpts struct {
-	IsAdminMode optional.String
-}
-
-type FolderManagementApiGetGlobalFolderAsyncOpts struct {
-	IsAdminMode optional.String
-}
-
-type FolderManagementApiUpdateFolderOpts struct {
+type FolderOpts struct {
 	IsAdminMode optional.String
 }
 

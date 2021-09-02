@@ -12,8 +12,8 @@ import (
 /*
 DisableMfa
 Disable multi-factor authentication for given user.
- * body - Email and Password of the user to disable MFA for.
- * id - Identifier of the user to disable MFA for.
+	body - Email and Password of the user to disable MFA for.
+	id - Identifier of the user to disable MFA for.
 */
 func (a *APIClient) DisableMfa(body types.DisableMfaRequest, id string) (*http.Response, error) {
 	var (
@@ -71,14 +71,18 @@ func (a *APIClient) DisableMfa(body types.DisableMfaRequest, id string) (*http.R
 			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		if localVarHttpResponse.StatusCode == 0 {
+		if localVarHttpResponse.StatusCode >= 400 {
 			var v types.ErrorResponse
 			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarHttpResponse, newErr
 			}
-			newErr.model = v
+			if v.Errors[0].Meta.Reason != "" {
+				newErr.error = v.Errors[0].Message + ": " + v.Errors[0].Meta.Reason
+			} else {
+				newErr.error = v.Errors[0].Message
+			}
 			return localVarHttpResponse, newErr
 		}
 		return localVarHttpResponse, newErr

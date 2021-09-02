@@ -12,8 +12,7 @@ import (
 /*
 GetAdminRecommendedFolderAsyncStatus
 Get the status of an asynchronous Admin Recommended folder job for the given job identifier. * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * jobId - The identifier of the asynchronous Admin Recommended folder job.
-Returns types.AsyncJobStatus
+	jobId - The identifier of the asynchronous Admin Recommended folder job.
 */
 func (a *APIClient) GetAdminRecommendedFolderAsyncStatus(jobId string) (types.AsyncJobStatus, *http.Response, error) {
 	var (
@@ -71,9 +70,7 @@ func (a *APIClient) GetAdminRecommendedFolderAsyncStatus(jobId string) (types.As
 		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
-	}
-
-	if localVarHttpResponse.StatusCode >= 300 {
+	} else if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
 			body:  localVarBody,
 			error: localVarHttpResponse.Status,
@@ -87,15 +84,18 @@ func (a *APIClient) GetAdminRecommendedFolderAsyncStatus(jobId string) (types.As
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
-		}
-		if localVarHttpResponse.StatusCode == 0 {
+		} else if localVarHttpResponse.StatusCode >= 400 {
 			var v types.ErrorResponse
 			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
-			newErr.model = v
+			if v.Errors[0].Meta.Reason != "" {
+				newErr.error = v.Errors[0].Message + ": " + v.Errors[0].Meta.Reason
+			} else {
+				newErr.error = v.Errors[0].Message
+			}
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr

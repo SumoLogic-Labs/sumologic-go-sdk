@@ -12,8 +12,8 @@ import (
 /*
 RemoveRoleFromUser
 Remove a role from a user in the organization.
- * roleId - Identifier of the role to delete.
- * userId - Identifier of the user to remove the role from.
+	roleId - Identifier of the role to delete.
+	userId - Identifier of the user to remove the role from.
 */
 func (a *APIClient) RemoveRoleFromUser(roleId string, userId string) (*http.Response, error) {
 	var (
@@ -70,14 +70,18 @@ func (a *APIClient) RemoveRoleFromUser(roleId string, userId string) (*http.Resp
 			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		if localVarHttpResponse.StatusCode == 0 {
+		if localVarHttpResponse.StatusCode >= 400 {
 			var v types.ErrorResponse
 			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarHttpResponse, newErr
 			}
-			newErr.model = v
+			if v.Errors[0].Meta.Reason != "" {
+				newErr.error = v.Errors[0].Message + ": " + v.Errors[0].Meta.Reason
+			} else {
+				newErr.error = v.Errors[0].Message
+			}
 			return localVarHttpResponse, newErr
 		}
 		return localVarHttpResponse, newErr

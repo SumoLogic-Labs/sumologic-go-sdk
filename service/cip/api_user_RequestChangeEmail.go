@@ -12,8 +12,8 @@ import (
 /*
 RequestChangeEmail
 An email with an activation link is sent to the user’s new email address. The user must click the link in the email within seven days to complete the email address change, or the link will expire.
- * body - New email address of the user.
- * id - Identifier of the user to change email address.
+	body - New email address of the user.
+	id - Identifier of the user to change email address.
 */
 func (a *APIClient) RequestChangeEmail(body types.ChangeEmailRequest, id string) (*http.Response, error) {
 	var (
@@ -71,14 +71,18 @@ func (a *APIClient) RequestChangeEmail(body types.ChangeEmailRequest, id string)
 			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		if localVarHttpResponse.StatusCode == 0 {
+		if localVarHttpResponse.StatusCode >= 400 {
 			var v types.ErrorResponse
 			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarHttpResponse, newErr
 			}
-			newErr.model = v
+			if v.Errors[0].Meta.Reason != "" {
+				newErr.error = v.Errors[0].Message + ": " + v.Errors[0].Meta.Reason
+			} else {
+				newErr.error = v.Errors[0].Message
+			}
 			return localVarHttpResponse, newErr
 		}
 		return localVarHttpResponse, newErr

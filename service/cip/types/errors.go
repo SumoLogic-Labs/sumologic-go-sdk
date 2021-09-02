@@ -8,7 +8,11 @@ type ErrorDescription struct {
 	// An optional fuller English-language description of the error.
 	Detail string `json:"detail,omitempty"`
 	// An optional list of metadata about the error.
-	Meta *interface{} `json:"meta,omitempty"`
+	Meta ErrorMeta `json:"meta,omitempty"`
+}
+
+type ErrorMeta struct {
+	Reason string `json:"reason,omitempty"`
 }
 
 type ErrorResponse struct {

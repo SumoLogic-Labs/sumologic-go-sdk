@@ -12,9 +12,8 @@ import (
 /*
 CreateEventHubSource
 Create an Azure Event Hub source.
- * body - The definition of the Event Hub source.
- * collectorId - The identifier of the Sumo Logic collector to assign the source to.
-Returns types.EventHubModel
+	body - The definition of the Event Hub source.
+	collectorId - The identifier of the Sumo Logic collector to assign the source to.
 */
 func (a *APIClient) CreateEventHubSource(body types.CreateEventHubSourceRequest, collectorId string) (types.EventHubModel, *http.Response, error) {
 	var (
@@ -69,14 +68,12 @@ func (a *APIClient) CreateEventHubSource(body types.CreateEventHubSourceRequest,
 	}
 
 	if localVarHttpResponse.StatusCode < 300 {
-		// If we succeed, return the data, otherwise pass on to decode error
+		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
-	}
-
-	if localVarHttpResponse.StatusCode >= 300 {
+	} else if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
 			body:  localVarBody,
 			error: localVarHttpResponse.Status,
@@ -90,15 +87,18 @@ func (a *APIClient) CreateEventHubSource(body types.CreateEventHubSourceRequest,
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
-		}
-		if localVarHttpResponse.StatusCode == 0 {
+		} else if localVarHttpResponse.StatusCode >= 400 {
 			var v types.ErrorResponse
 			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
-			newErr.model = v
+			if v.Errors[0].Meta.Reason != "" {
+				newErr.error = v.Errors[0].Message + ": " + v.Errors[0].Meta.Reason
+			} else {
+				newErr.error = v.Errors[0].Message
+			}
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr

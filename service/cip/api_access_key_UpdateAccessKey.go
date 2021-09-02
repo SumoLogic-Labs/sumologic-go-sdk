@@ -12,9 +12,8 @@ import (
 /*
 UpdateAccessKey
 Updates the properties of existing accessKey by accessId. It can be used to enable or disable the access key and to update the corsHeaders list.
- * body - Information to update about the access key
- * id - The accessId of the access key to update.
-Returns types.AccessKeyPublic
+	body - Information to update about the access key
+	id - The accessId of the access key to update.
 */
 func (a *APIClient) UpdateAccessKey(body types.AccessKeyUpdateRequest, id string) (types.AccessKeyPublic, *http.Response, error) {
 	var (
@@ -74,9 +73,7 @@ func (a *APIClient) UpdateAccessKey(body types.AccessKeyUpdateRequest, id string
 		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
-	}
-
-	if localVarHttpResponse.StatusCode >= 300 {
+	} else if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
 			body:  localVarBody,
 			error: localVarHttpResponse.Status,
@@ -90,15 +87,18 @@ func (a *APIClient) UpdateAccessKey(body types.AccessKeyUpdateRequest, id string
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
-		}
-		if localVarHttpResponse.StatusCode == 0 {
+		} else if localVarHttpResponse.StatusCode >= 400 {
 			var v types.ErrorResponse
 			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
-			newErr.model = v
+			if v.Errors[0].Meta.Reason != "" {
+				newErr.error = v.Errors[0].Message + ": " + v.Errors[0].Meta.Reason
+			} else {
+				newErr.error = v.Errors[0].Message
+			}
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr

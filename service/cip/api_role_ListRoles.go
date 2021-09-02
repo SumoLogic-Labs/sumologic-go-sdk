@@ -11,12 +11,11 @@ import (
 /*
 ListRoles
 Get a list of all the roles in the organization. The response is paginated with a default limit of 100 roles per page.
- * optional - nil or *types.ListRolesOpts - Optional Parameters:
-  * Limit (optional.Int32) -  Limit the number of roles returned in the response. The number of roles returned may be less than the &#x60;limit&#x60;.
-  * Token (optional.String) -  Continuation token to get the next page of results. A page object with the next continuation token is returned in the response body. Subsequent GET requests should specify the continuation token to get the next page of results. Token is set to null when no more pages are left.
-  * SortBy (optional.String) -  Sort the list of roles by the name field.
-  * Name (optional.String) -  Only return roles matching the given name.
-Returns types.ListRoleModelsResponse
+	optional - nil or *types.ListRolesOpts - Optional Parameters:
+		Limit (optional.Int32) -  Limit the number of roles returned in the response. The number of roles returned may be less than the &#x60;limit&#x60;.
+		Token (optional.String) -  Continuation token to get the next page of results. A page object with the next continuation token is returned in the response body. Subsequent GET requests should specify the continuation token to get the next page of results. Token is set to null when no more pages are left.
+		SortBy (optional.String) -  Sort the list of roles by the name field.
+		Name (optional.String) -  Only return roles matching the given name.
 */
 func (a *APIClient) ListRoles(localVarOptionals *types.ListRolesOpts) (types.ListRoleModelsResponse, *http.Response, error) {
 	var (
@@ -85,9 +84,7 @@ func (a *APIClient) ListRoles(localVarOptionals *types.ListRolesOpts) (types.Lis
 		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
-	}
-
-	if localVarHttpResponse.StatusCode >= 300 {
+	} else if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
 			body:  localVarBody,
 			error: localVarHttpResponse.Status,
@@ -101,15 +98,18 @@ func (a *APIClient) ListRoles(localVarOptionals *types.ListRolesOpts) (types.Lis
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
-		}
-		if localVarHttpResponse.StatusCode == 0 {
+		} else if localVarHttpResponse.StatusCode >= 400 {
 			var v types.ErrorResponse
 			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
-			newErr.model = v
+			if v.Errors[0].Meta.Reason != "" {
+				newErr.error = v.Errors[0].Message + ": " + v.Errors[0].Meta.Reason
+			} else {
+				newErr.error = v.Errors[0].Message
+			}
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr

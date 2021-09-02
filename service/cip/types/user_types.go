@@ -46,6 +46,17 @@ type UpdateUserDefinition struct {
 	RoleIds []string `json:"roleIds"`
 }
 
+type UserInfo struct {
+	// User's identifier.
+	Id string `json:"id"`
+	// User's email.
+	Email string `json:"email"`
+	// User's first name.
+	FirstName string `json:"firstName"`
+	// User's last name.
+	LastName string `json:"lastName"`
+}
+
 type UserModel struct {
 	// Creation timestamp in UTC in [RFC3339](https://tools.ietf.org/html/rfc3339) format.
 	CreatedAt time.Time `json:"createdAt"`
@@ -75,11 +86,11 @@ type UserModel struct {
 	LastLoginTimestamp time.Time `json:"lastLoginTimestamp,omitempty"`
 }
 
-type UserManagementApiDeleteUserOpts struct {
+type DeleteUserOpts struct {
 	TransferTo optional.String
 }
 
-type UserManagementApiListUsersOpts struct {
+type ListUsersOpts struct {
 	Limit  optional.Int32
 	Token  optional.String
 	SortBy optional.String

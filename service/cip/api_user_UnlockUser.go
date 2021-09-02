@@ -12,7 +12,7 @@ import (
 /*
 UnlockUser
 Unlock another user's account.
- * id - The id of the user that needs to be unlocked.
+	id - The id of the user that needs to be unlocked.
 */
 func (a *APIClient) UnlockUser(id string) (*http.Response, error) {
 	var (
@@ -68,14 +68,18 @@ func (a *APIClient) UnlockUser(id string) (*http.Response, error) {
 			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		if localVarHttpResponse.StatusCode == 0 {
+		if localVarHttpResponse.StatusCode >= 400 {
 			var v types.ErrorResponse
 			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarHttpResponse, newErr
 			}
-			newErr.model = v
+			if v.Errors[0].Meta.Reason != "" {
+				newErr.error = v.Errors[0].Message + ": " + v.Errors[0].Meta.Reason
+			} else {
+				newErr.error = v.Errors[0].Message
+			}
 			return localVarHttpResponse, newErr
 		}
 		return localVarHttpResponse, newErr

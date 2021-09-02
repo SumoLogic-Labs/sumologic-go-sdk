@@ -11,12 +11,11 @@ import (
 /*
 CreateFolder
 Creates a new folder under the given parent folder.
- * body - Information about the new folder.
- * optional - nil or *types.FolderManagementApiCreateFolderOpts - Optional Parameters:
-  * IsAdminMode (optional.String) - Set this to true if you want to perform the request as a Content Administrator.
-Returns types.Folder
+	body - Information about the new folder.
+	optional - nil or *types.FolderOpts - Optional Parameters:
+		IsAdminMode (optional.String) - Set this to true if you want to perform the request as a Content Administrator.
 */
-func (a *APIClient) CreateFolder(body types.FolderDefinition, localVarOptionals *types.FolderManagementApiCreateFolderOpts) (types.Folder, *http.Response, error) {
+func (a *APIClient) CreateFolder(body types.FolderDefinition, localVarOptionals *types.FolderOpts) (types.Folder, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Post")
 		localVarPostBody    interface{}
@@ -76,9 +75,7 @@ func (a *APIClient) CreateFolder(body types.FolderDefinition, localVarOptionals 
 		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
-	}
-
-	if localVarHttpResponse.StatusCode >= 300 {
+	} else if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
 			body:  localVarBody,
 			error: localVarHttpResponse.Status,
@@ -92,15 +89,18 @@ func (a *APIClient) CreateFolder(body types.FolderDefinition, localVarOptionals 
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
-		}
-		if localVarHttpResponse.StatusCode == 0 {
+		} else if localVarHttpResponse.StatusCode >= 400 {
 			var v types.ErrorResponse
 			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
-			newErr.model = v
+			if v.Errors[0].Meta.Reason != "" {
+				newErr.error = v.Errors[0].Message + ": " + v.Errors[0].Meta.Reason
+			} else {
+				newErr.error = v.Errors[0].Message
+			}
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr

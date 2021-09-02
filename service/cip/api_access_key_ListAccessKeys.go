@@ -11,12 +11,11 @@ import (
 /*
 ListAccessKeys
 List all access keys in your account.
- * optional - nil or *AccessKeyManagementApiListAccessKeysOpts - Optional Parameters:
-  * Limit (optional.Int32) -  Limit the number of access keys returned in the response. The number of access keys returned may be less than the limit.
-  * Token (optional.String) -  Continuation token to get the next page of results. A page object with the next continuation token is returned in the response body. Subsequent GET requests should specify the continuation token to get the next page of results. token is set to null when no more pages are left.
-Returns types.PaginatedListAccessKeysResult
+	optional - nil or *types.AccessKeyOpts - Optional Parameters:
+		Limit (optional.Int32) - Limit the number of access keys returned in the response. The number of access keys returned may be less than the limit.
+		Token (optional.String) - Continuation token to get the next page of results. A page object with the next continuation token is returned in the response body. Subsequent GET requests should specify the continuation token to get the next page of results. token is set to null when no more pages are left.
 */
-func (a *APIClient) ListAccessKeys(localVarOptionals *types.AccessKeyManagementApiListAccessKeysOpts) (types.PaginatedListAccessKeysResult, *http.Response, error) {
+func (a *APIClient) ListAccessKeys(localVarOptionals *types.AccessKeyOpts) (types.PaginatedListAccessKeysResult, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}
@@ -77,9 +76,7 @@ func (a *APIClient) ListAccessKeys(localVarOptionals *types.AccessKeyManagementA
 		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
-	}
-
-	if localVarHttpResponse.StatusCode >= 300 {
+	} else if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
 			body:  localVarBody,
 			error: localVarHttpResponse.Status,
@@ -93,15 +90,18 @@ func (a *APIClient) ListAccessKeys(localVarOptionals *types.AccessKeyManagementA
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
-		}
-		if localVarHttpResponse.StatusCode == 0 {
+		} else if localVarHttpResponse.StatusCode >= 400 {
 			var v types.ErrorResponse
 			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
-			newErr.model = v
+			if v.Errors[0].Meta.Reason != "" {
+				newErr.error = v.Errors[0].Message + ": " + v.Errors[0].Meta.Reason
+			} else {
+				newErr.error = v.Errors[0].Message
+			}
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr
