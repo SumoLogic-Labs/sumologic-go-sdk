@@ -20,7 +20,7 @@ You only need to add the dependencies that your project requires. For example if
 Core Intelligence Platform (CIP) resources then you only need to use `service/cip`.
 
 ```
-go get github.com/wizedkyle/sumologic-go-sdk/service/cip
+go get github.com/SumoLogic-Incubator/sumologic-go-sdk/service/cip
 ```
 
 ###### Write Code
@@ -32,7 +32,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/wizedkyle/sumologic-go-sdk/service/cip"
+	"github.com/SumoLogic-Incubator/sumologic-go-sdk/service/cip"
 )
 
 func main() {
@@ -62,7 +62,7 @@ You can find a list of API endpoints and sources that the sumologic-go-sdk suppo
 
 ## Contributing
 
-The Sumo Logic Go SDK uses GitHub [Issues](https://github.com/wizedkyle/sumologic-go-sdk/issues) to report and track 
+The Sumo Logic Go SDK uses GitHub [Issues](https://github.com/SumoLogic-Incubator/sumologic-go-sdk/issues) to report and track 
 issues with the SDK. If you have found a bug, identified an area of improvement or want a new feature add please create or 
 upvote an existing issue.
 
