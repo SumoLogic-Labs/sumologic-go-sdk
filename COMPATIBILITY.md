@@ -27,7 +27,7 @@ You can find further information about the Sumo Logic APIs in their [documentati
 | Lookup Tables | :white_check_mark: | | 
 | Metrics Searches (Beta) | :white_check_mark: | |
 | Monitors | :white_check_mark: | |
-| Organizations (Beta) | | |
+| Organizations (Beta) | :white_check_mark: | |
 | Partitions | :white_check_mark: | |
 | Password Policy | :white_check_mark: | |
 | Permissions | :white_check_mark: | |
