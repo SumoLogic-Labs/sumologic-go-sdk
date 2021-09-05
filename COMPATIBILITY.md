@@ -26,17 +26,17 @@ You can find further information about the Sumo Logic APIs in their [documentati
 | Log Search Estimated Usage | :white_check_mark: | |
 | Lookup Tables | :white_check_mark: | | 
 | Metrics Searches (Beta) | :white_check_mark: | |
-| Monitors | | |
-| Organizations | | |
+| Monitors | :white_check_mark: | |
+| Organizations (Beta) | :white_check_mark: | |
 | Partitions | :white_check_mark: | |
 | Password Policy | :white_check_mark: | |
 | Permissions | :white_check_mark: | |
 | Policies | :white_check_mark: | |
 | Roles | :white_check_mark: | |
-| SAML Configuration | | |
+| SAML Configuration | :white_check_mark: | |
 | Scheduled Views | :white_check_mark: | |
 | Service Allowlist | :white_check_mark: | |
-| Sources | | |
+| Sources | :white_check_mark: | |
 | Tokens | :white_check_mark: | |
 | Transformation Rules (Beta) | :white_check_mark: | |
 | Users | :white_check_mark: | |
