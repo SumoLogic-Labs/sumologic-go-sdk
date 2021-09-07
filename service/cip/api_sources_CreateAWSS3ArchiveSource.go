@@ -3,38 +3,37 @@ package cip
 import (
 	"fmt"
 	"github.com/SumoLogic-Incubator/sumologic-go-sdk/service/cip/types"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
 )
 
 /*
-GetEventHubSource
-Get information about an Azure Event Hub source.
-	collectorId - The identifier of the Sumo Logic collector that the source is assigned to.
-	sourceId - The identifier of the Sumo Logic Azure Event Hub source.
+CreateAWSS3ArchiveSource
+Create an AWS S3 Archive source.
+	body - The definition of the AWS S3 Archive source.
+	collectorId - The identifier of the Sumo Logic collector to assign the source to.
 */
-func (a *APIClient) GetEventHubSource(collectorId string, sourceId string) (types.EventHubModel, *http.Response, error) {
+func (a *APIClient) CreateAWSS3ArchiveSource(body types.AWSS3ArchiveDefinition, collectorId string) (types.AWSS3ArchiveResponseModel, *http.Response, error) {
 	var (
-		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarHttpMethod  = strings.ToUpper("Post")
 		localVarPostBody    interface{}
 		localVarFileName    string
 		localVarFileBytes   []byte
-		localVarReturnValue types.EventHubModel
+		localVarReturnValue types.AWSS3ArchiveResponseModel
 	)
 
 	// create path and map variables
-	localVarPath := a.Cfg.BasePath + "/v1/collectors/{collectorId}/sources/{sourceId}"
+	localVarPath := a.Cfg.BasePath + "/v1/collectors/{collectorId}/sources"
 	localVarPath = strings.Replace(localVarPath, "{"+"collectorId"+"}", fmt.Sprintf("%v", collectorId), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"sourceId"+"}", fmt.Sprintf("%v", sourceId), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHttpContentTypes := []string{}
+	localVarHttpContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
@@ -50,6 +49,8 @@ func (a *APIClient) GetEventHubSource(collectorId string, sourceId string) (type
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
+	// body params
+	localVarPostBody = &body
 	r, err := a.prepareRequest(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -60,7 +61,7 @@ func (a *APIClient) GetEventHubSource(collectorId string, sourceId string) (type
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHttpResponse.Body)
 	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
@@ -78,7 +79,7 @@ func (a *APIClient) GetEventHubSource(collectorId string, sourceId string) (type
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
-			var v types.EventHubModel
+			var v types.AWSS3ArchiveResponseModel
 			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

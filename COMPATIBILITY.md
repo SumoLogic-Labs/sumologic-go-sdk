@@ -74,7 +74,7 @@ You can find further information about supported Sumo Logic sources in their [do
 | --- | --- | --- |
 | Akamai SIEM API Source | | |
 | Amazon S3 Source | | |
-| AWS S3 Archive Source | | |
+| AWS S3 Archive Source | :white_check_mark: | |
 | AWS Elastic Load Balancing Source | | |
 | AWS CloudFront Source | | |
 | AWS CloudTrail Source | | |
