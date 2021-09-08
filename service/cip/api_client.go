@@ -147,7 +147,7 @@ func (a *APIClient) prepareRequest(
 	fileBytes []byte) (localVarRequest *http.Request, err error) {
 
 	var body *bytes.Buffer
-
+	fmt.Println(postBody)
 	// Detect postBody type and post.
 	if postBody != nil {
 		contentType := headerParams["Content-Type"]
@@ -157,6 +157,7 @@ func (a *APIClient) prepareRequest(
 		}
 
 		body, err = setBody(postBody, contentType)
+		fmt.Println(body.String())
 		if err != nil {
 			return nil, err
 		}
@@ -231,7 +232,6 @@ func (a *APIClient) prepareRequest(
 
 	// Generate a new request
 	if body != nil {
-		fmt.Println(body.String())
 		localVarRequest, err = http.NewRequest(method, url.String(), body)
 	} else {
 		localVarRequest, err = http.NewRequest(method, url.String(), nil)
