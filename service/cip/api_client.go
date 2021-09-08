@@ -231,6 +231,7 @@ func (a *APIClient) prepareRequest(
 
 	// Generate a new request
 	if body != nil {
+		fmt.Println(body.String())
 		localVarRequest, err = http.NewRequest(method, url.String(), body)
 	} else {
 		localVarRequest, err = http.NewRequest(method, url.String(), nil)
