@@ -88,7 +88,7 @@ You can find further information about supported Sumo Logic sources in their [do
 | Crowdstrike Source | | |
 | CSE AWS EC2 Inventory Source | | |
 | Duo Source | | |
-| HTTP Source | | |
+| HTTP Source | | Sending data to HTTP sources is supported using the SendMessage function |
 | Microsoft Graph Security API Source | | |
 | Mimecast Source | | |
 | Netskope Source | | |

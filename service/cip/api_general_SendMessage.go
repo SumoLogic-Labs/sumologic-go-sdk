@@ -59,7 +59,7 @@ func (a *APIClient) SendMessage(maxRetries int, message string) *http.Response {
 			time.Sleep(10 * time.Second)
 		}
 		if count > maxRetries {
-			fmt.Println("failed to send data to Sumo Logic max retry attempts reached. Check that the sourceUrl is correct.")
+			fmt.Println("failed to send data to Sumo Logic max retry attempts reached. Check that the source url is correct.")
 			return localVarHttpResponse
 		}
 	} else {
