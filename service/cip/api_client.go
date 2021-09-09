@@ -15,12 +15,10 @@ import (
 	"path/filepath"
 	"reflect"
 	"regexp"
-	"strconv"
 	"strings"
 )
 
 var (
-	// TODO: Fix up this
 	jsonCheck = regexp.MustCompile("(?i:[application|text]/json)")
 	xmlCheck  = regexp.MustCompile("(?i:[application|text]/xml)")
 	// ContextBasicAuth takes BasicAuth as authentication for the request.
@@ -47,21 +45,20 @@ type BasicAuth struct {
 }
 
 type Configuration struct {
+	// Used for authenticating against the Sumo Logic API
 	Authentication BasicAuth         `json:"authentication"`
 	BasePath       string            `json:"basePath,omitempty"`
 	Host           string            `json:"host,omitempty"`
 	Scheme         string            `json:"scheme,omitempty"`
 	DefaultHeader  map[string]string `json:"defaultHeader,omitempty"`
 	UserAgent      string            `json:"userAgent,omitempty"`
-	HTTPClient     *http.Client
+	// Set this if you want to send data to a Sumo Logic source (only used with the SendMessage function)
+	SourceUrl  string `json:"sourceUrl,omitempty"`
+	HTTPClient *http.Client
 }
 
 type service struct {
 	client *APIClient
-}
-
-func atoi(in string) (int, error) {
-	return strconv.Atoi(in)
 }
 
 func (c *Configuration) AddDefaultHeader(key string, value string) {
@@ -71,14 +68,6 @@ func (c *Configuration) AddDefaultHeader(key string, value string) {
 func basicAuth(accessId string, accessKey string) string {
 	accessCredentials := accessId + ":" + accessKey
 	return base64.StdEncoding.EncodeToString([]byte(accessCredentials))
-}
-
-func NewConfiguration() *Configuration {
-	cfg := &Configuration{
-		DefaultHeader: make(map[string]string),
-		UserAgent:     UserAgent(),
-	}
-	return cfg
 }
 
 // selectHeaderContentType select a content type from the available list.
@@ -113,20 +102,6 @@ func contains(haystack []string, needle string) bool {
 		}
 	}
 	return false
-}
-
-// Verify optional parameters are of the correct type.
-func typeCheckParameter(obj interface{}, expected string, name string) error {
-	// Make sure there is an object.
-	if obj == nil {
-		return nil
-	}
-
-	// Check the type is as expected.
-	if reflect.TypeOf(obj).String() != expected {
-		return fmt.Errorf("Expected %s to be of type %s but received %s.", name, expected, reflect.TypeOf(obj).String())
-	}
-	return nil
 }
 
 // parameterToString convert interface{} parameters to string, using a delimiter if format is provided.
@@ -180,7 +155,6 @@ func (a *APIClient) prepareRequest(
 			contentType = detectContentType(postBody)
 			headerParams["Content-Type"] = contentType
 		}
-
 		body, err = setBody(postBody, contentType)
 		if err != nil {
 			return nil, err
@@ -280,7 +254,9 @@ func (a *APIClient) prepareRequest(
 
 	// Add the user agent to the request.
 	localVarRequest.Header.Add("User-Agent", a.Cfg.UserAgent)
-	localVarRequest.Header.Add("Authorization", "Basic "+basicAuth(a.Cfg.Authentication.AccessId, a.Cfg.Authentication.AccessKey))
+	if a.Cfg.Authentication.AccessKey != "" && a.Cfg.Authentication.AccessId != "" {
+		localVarRequest.Header.Add("Authorization", "Basic "+basicAuth(a.Cfg.Authentication.AccessId, a.Cfg.Authentication.AccessKey))
+	}
 
 	for header, value := range a.Cfg.DefaultHeader {
 		localVarRequest.Header.Add(header, value)

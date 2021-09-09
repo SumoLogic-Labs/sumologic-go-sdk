@@ -10,18 +10,18 @@ import (
 )
 
 /*
-GetEventHubSource
-Get information about an Azure Event Hub source.
+GetAWSS3ArchiveSource
+Get information about an AWS S3 Archive source.
 	collectorId - The identifier of the Sumo Logic collector that the source is assigned to.
-	sourceId - The identifier of the Sumo Logic Azure Event Hub source.
+	sourceId - The identifier of the Sumo Logic AWS S3 Archive source.
 */
-func (a *APIClient) GetEventHubSource(collectorId string, sourceId string) (types.EventHubModel, *http.Response, error) {
+func (a *APIClient) GetAWSS3ArchiveSource(collectorId string, sourceId string) (types.AWSS3ArchiveResponseModel, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}
 		localVarFileName    string
 		localVarFileBytes   []byte
-		localVarReturnValue types.EventHubModel
+		localVarReturnValue types.AWSS3ArchiveResponseModel
 	)
 
 	// create path and map variables
@@ -78,7 +78,7 @@ func (a *APIClient) GetEventHubSource(collectorId string, sourceId string) (type
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
-			var v types.EventHubModel
+			var v types.AWSS3ArchiveResponseModel
 			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

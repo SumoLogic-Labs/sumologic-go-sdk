@@ -74,7 +74,7 @@ You can find further information about supported Sumo Logic sources in their [do
 | --- | --- | --- |
 | Akamai SIEM API Source | | |
 | Amazon S3 Source | | |
-| AWS S3 Archive Source | | |
+| AWS S3 Archive Source | :white_check_mark: | |
 | AWS Elastic Load Balancing Source | | |
 | AWS CloudFront Source | | |
 | AWS CloudTrail Source | | |
@@ -88,7 +88,7 @@ You can find further information about supported Sumo Logic sources in their [do
 | Crowdstrike Source | | |
 | CSE AWS EC2 Inventory Source | | |
 | Duo Source | | |
-| HTTP Source | | |
+| HTTP Source | | Sending data to HTTP sources is supported using the SendMessage function |
 | Microsoft Graph Security API Source | | |
 | Mimecast Source | | |
 | Netskope Source | | |
