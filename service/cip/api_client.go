@@ -149,22 +149,18 @@ func (a *APIClient) prepareRequest(
 	var body *bytes.Buffer
 
 	// Detect postBody type and post.
-
-	if strings.Contains(path, "https://collectors") {
-		reader := postBody.([]byte)
-		body.Write(reader)
-		fmt.Println(body.String())
-	} else if postBody != nil {
+	if postBody != nil {
 		contentType := headerParams["Content-Type"]
 		if contentType == "" {
 			contentType = detectContentType(postBody)
 			headerParams["Content-Type"] = contentType
 		}
-
+		fmt.Println(postBody.(string))
 		body, err = setBody(postBody, contentType)
 		if err != nil {
 			return nil, err
 		}
+		fmt.Println(body.String())
 	}
 
 	// add form parameters and file if available.
