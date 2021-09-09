@@ -31,7 +31,9 @@ func (a *APIClient) SendMessage(maxRetries int, message []byte) (*http.Response,
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	fmt.Println(string(message))
 	localVarPostBody = &message
+	fmt.Sprintf("%v", localVarPostBody)
 	r, err := a.prepareRequest(localVarpath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	fmt.Println(r.Header.Get("Content-Type"))
 	if err != nil {
