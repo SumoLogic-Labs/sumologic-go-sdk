@@ -42,6 +42,7 @@ func (a *APIClient) SendMessage(maxRetries int, message []byte) (*http.Response,
 
 	localVarPostBody = &message
 	r, err := a.prepareRequest(localVarpath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	fmt.Println(r.Header)
 	if err != nil {
 		return nil, err
 	}
