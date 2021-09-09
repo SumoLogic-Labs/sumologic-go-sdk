@@ -146,7 +146,6 @@ func (a *APIClient) prepareRequest(
 	fileName string,
 	fileBytes []byte) (localVarRequest *http.Request, err error) {
 
-	fmt.Sprintf("%v", postBody)
 	var body *bytes.Buffer
 
 	// Detect postBody type and post.
@@ -160,7 +159,6 @@ func (a *APIClient) prepareRequest(
 		if err != nil {
 			return nil, err
 		}
-		fmt.Println(body.String())
 	}
 
 	// add form parameters and file if available.
@@ -232,7 +230,6 @@ func (a *APIClient) prepareRequest(
 
 	// Generate a new request
 	if body != nil {
-		fmt.Println(body.String())
 		localVarRequest, err = http.NewRequest(method, url.String(), body)
 	} else {
 		localVarRequest, err = http.NewRequest(method, url.String(), nil)
@@ -302,28 +299,21 @@ func addFile(w *multipart.Writer, fieldName, path string) error {
 
 // Set request body from an interface{}
 func setBody(body interface{}, contentType string) (bodyBuf *bytes.Buffer, err error) {
-	fmt.Println(contentType)
 	if bodyBuf == nil {
 		bodyBuf = &bytes.Buffer{}
 	}
 
 	if reader, ok := body.(io.Reader); ok {
-		fmt.Println("This is a Reader If statement")
 		_, err = bodyBuf.ReadFrom(reader)
 	} else if b, ok := body.([]byte); ok {
-		fmt.Println("This is a []byte If statement")
 		_, err = bodyBuf.Write(b)
 	} else if s, ok := body.(string); ok {
-		fmt.Println("This is a string If statement")
 		_, err = bodyBuf.WriteString(s)
 	} else if s, ok := body.(*string); ok {
-		fmt.Println("This is a string pointer If statement")
 		_, err = bodyBuf.WriteString(*s)
 	} else if jsonCheck.MatchString(contentType) {
-		fmt.Println("This is a json check If statement")
 		err = json.NewEncoder(bodyBuf).Encode(body)
 	} else if xmlCheck.MatchString(contentType) {
-		fmt.Println("This is a xml check If statement")
 		xml.NewEncoder(bodyBuf).Encode(body)
 	}
 
@@ -343,7 +333,6 @@ func detectContentType(body interface{}) string {
 	contentType := "text/plain; charset=utf-8"
 	kind := reflect.TypeOf(body).Kind()
 
-	fmt.Println(kind)
 	switch kind {
 	case reflect.Struct, reflect.Map, reflect.Ptr:
 		contentType = "application/json; charset=utf-8"
