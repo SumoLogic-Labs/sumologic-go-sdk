@@ -146,6 +146,7 @@ func (a *APIClient) prepareRequest(
 	fileName string,
 	fileBytes []byte) (localVarRequest *http.Request, err error) {
 
+	fmt.Sprintf("%v", postBody)
 	var body *bytes.Buffer
 
 	// Detect postBody type and post.
