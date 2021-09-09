@@ -156,7 +156,8 @@ func (a *APIClient) prepareRequest(
 			contentType = detectContentType(postBody)
 			headerParams["Content-Type"] = contentType
 		}
-		fmt.Sprintf("%v", postBody)
+		str := fmt.Sprintf("%v", postBody)
+		fmt.Println(str)
 		body, err = setBody(postBody, contentType)
 		if err != nil {
 			return nil, err
