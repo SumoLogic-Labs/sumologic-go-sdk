@@ -156,8 +156,6 @@ func (a *APIClient) prepareRequest(
 			contentType = detectContentType(postBody)
 			headerParams["Content-Type"] = contentType
 		}
-		str := fmt.Sprintf("%v", postBody)
-		fmt.Println(str)
 		body, err = setBody(postBody, contentType)
 		if err != nil {
 			return nil, err
@@ -309,16 +307,22 @@ func setBody(body interface{}, contentType string) (bodyBuf *bytes.Buffer, err e
 	}
 
 	if reader, ok := body.(io.Reader); ok {
+		fmt.Println("This is a Reader If statement")
 		_, err = bodyBuf.ReadFrom(reader)
 	} else if b, ok := body.([]byte); ok {
+		fmt.Println("This is a []byte If statement")
 		_, err = bodyBuf.Write(b)
 	} else if s, ok := body.(string); ok {
+		fmt.Println("This is a string If statement")
 		_, err = bodyBuf.WriteString(s)
 	} else if s, ok := body.(*string); ok {
+		fmt.Println("This is a string pointer If statement")
 		_, err = bodyBuf.WriteString(*s)
 	} else if jsonCheck.MatchString(contentType) {
+		fmt.Println("This is a json check If statement")
 		err = json.NewEncoder(bodyBuf).Encode(body)
 	} else if xmlCheck.MatchString(contentType) {
+		fmt.Println("This is a xml check If statement")
 		xml.NewEncoder(bodyBuf).Encode(body)
 	}
 
