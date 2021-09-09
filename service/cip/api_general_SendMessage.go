@@ -31,18 +31,9 @@ func (a *APIClient) SendMessage(maxRetries int, message []byte) (*http.Response,
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	// to determine the Content-Type header
-	localVarHttpContentTypes := []string{"text/plain"}
-
-	// set Content-Type header
-	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
-	if localVarHttpContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHttpContentType
-	}
-
 	localVarPostBody = &message
 	r, err := a.prepareRequest(localVarpath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-	fmt.Println(r.Header)
+	fmt.Println(r.Header.Get("Content-Type"))
 	if err != nil {
 		return nil, err
 	}
