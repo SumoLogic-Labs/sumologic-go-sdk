@@ -343,6 +343,7 @@ func detectContentType(body interface{}) string {
 	contentType := "text/plain; charset=utf-8"
 	kind := reflect.TypeOf(body).Kind()
 
+	fmt.Println(kind)
 	switch kind {
 	case reflect.Struct, reflect.Map, reflect.Ptr:
 		contentType = "application/json; charset=utf-8"
