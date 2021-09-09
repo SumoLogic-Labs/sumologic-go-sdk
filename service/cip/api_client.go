@@ -151,8 +151,8 @@ func (a *APIClient) prepareRequest(
 	// Detect postBody type and post.
 
 	if strings.Contains(path, "https://collectors") {
-		reader := postBody.(io.Reader)
-		body.ReadFrom(reader)
+		reader := postBody.([]byte)
+		body.Write(reader)
 		fmt.Println(body.String())
 	} else if postBody != nil {
 		contentType := headerParams["Content-Type"]
