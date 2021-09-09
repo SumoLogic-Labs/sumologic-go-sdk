@@ -149,7 +149,7 @@ func (a *APIClient) prepareRequest(
 	var body *bytes.Buffer
 
 	// Detect postBody type and post.
-	if postBody != nil && a.Cfg.SourceUrl == "" {
+	if postBody != nil {
 		contentType := headerParams["Content-Type"]
 		if contentType == "" {
 			contentType = detectContentType(postBody)
