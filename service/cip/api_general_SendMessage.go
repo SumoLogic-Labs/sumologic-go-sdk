@@ -16,7 +16,7 @@ based on the value of maxRetries.
 	maxRetries - determines how many times the message will attempt to be sent if there is an error sending.
 	message - data to send to the Sumo Logic source.
 */
-func (a *APIClient) SendMessage(maxRetries int, message string) (*http.Response, error) {
+func (a *APIClient) SendMessage(maxRetries int, message string) *http.Response {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -34,12 +34,12 @@ func (a *APIClient) SendMessage(maxRetries int, message string) (*http.Response,
 	localVarPostBody = &message
 	r, err := a.prepareRequest(localVarpath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return nil
 	}
 
 	localVarHttpResponse, err := a.callAPI(r)
 	if err != nil || localVarHttpResponse == nil {
-		return localVarHttpResponse, err
+		return localVarHttpResponse
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
@@ -48,7 +48,7 @@ func (a *APIClient) SendMessage(maxRetries int, message string) (*http.Response,
 			fmt.Println("failed to send data to Sumo Logic retrying...attempt " + strconv.Itoa(count))
 			localVarHttpResponse, err := a.callAPI(r)
 			if err != nil || localVarHttpResponse == nil {
-				return localVarHttpResponse, err
+				return localVarHttpResponse
 			}
 			if localVarHttpResponse.StatusCode >= 300 {
 				count++
@@ -59,10 +59,11 @@ func (a *APIClient) SendMessage(maxRetries int, message string) (*http.Response,
 			time.Sleep(10 * time.Second)
 		}
 		if count > maxRetries {
-			return localVarHttpResponse, err
+			fmt.Println("failed to send data to Sumo Logic max retry attempts reached. Check that the sourceUrl is correct.")
+			return localVarHttpResponse
 		}
 	} else {
 		fmt.Println("data successfully sent to Sumo Logic")
 	}
-	return localVarHttpResponse, err
+	return localVarHttpResponse
 }
