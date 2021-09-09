@@ -16,7 +16,7 @@ based on the value of maxRetries.
 	maxRetries - determines how many times the message will attempt to be sent if there is an error sending.
 	message - data to send to the Sumo Logic source.
 */
-func (a *APIClient) SendMessage(maxRetries int, message []byte) (*http.Response, error) {
+func (a *APIClient) SendMessage(maxRetries int, message string) (*http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
