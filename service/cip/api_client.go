@@ -302,6 +302,7 @@ func addFile(w *multipart.Writer, fieldName, path string) error {
 
 // Set request body from an interface{}
 func setBody(body interface{}, contentType string) (bodyBuf *bytes.Buffer, err error) {
+	fmt.Println(contentType)
 	if bodyBuf == nil {
 		bodyBuf = &bytes.Buffer{}
 	}
