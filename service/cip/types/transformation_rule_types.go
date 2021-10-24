@@ -7,13 +7,13 @@ import (
 
 type DimensionTransformation struct {
 	// Only used if TransformationType is set to "AggregateOnTransformation"
-	AggregateOn []string `json:"aggregateOn"`
+	AggregateOn []string `json:"aggregateOn,omitempty"`
 	// This is the base type of all dimension transformations. Valid values are: AggregateOnTransformation and AddOrReplaceTransformation
 	TransformationType string `json:"transformationType"`
 	// Only used if TransformationType is set to "AddOrReplaceTransformation"
-	DimensionToReplace string `json:"dimensionToReplace"`
+	DimensionToReplace string `json:"dimensionToReplace,omitempty"`
 	// Only used if TransformationType is set to "AddOrReplaceTransformation"
-	Value string `json:"value"`
+	Value string `json:"value,omitempty"`
 }
 
 type TransformationRuleDefinition struct {
