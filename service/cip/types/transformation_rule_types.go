@@ -6,8 +6,14 @@ import (
 )
 
 type DimensionTransformation struct {
-	// This is the base type of all dimension transformations.
+	// Only used if TransformationType is set to "AggregateOnTransformation"
+	AggregateOn []string `json:"aggregateOn,omitempty"`
+	// This is the base type of all dimension transformations. Valid values are: AggregateOnTransformation and AddOrReplaceTransformation
 	TransformationType string `json:"transformationType"`
+	// Only used if TransformationType is set to "AddOrReplaceTransformation"
+	DimensionToReplace string `json:"dimensionToReplace,omitempty"`
+	// Only used if TransformationType is set to "AddOrReplaceTransformation"
+	Value string `json:"value,omitempty"`
 }
 
 type TransformationRuleDefinition struct {
@@ -31,8 +37,8 @@ type TransformationRuleResponse struct {
 	// Last modification timestamp in UTC.
 	ModifiedAt time.Time `json:"modifiedAt"`
 	// Identifier of the user who last modified the resource.
-	ModifiedBy     string                        `json:"modifiedBy"`
-	RuleDefinition *TransformationRuleDefinition `json:"ruleDefinition"`
+	ModifiedBy     string                       `json:"modifiedBy"`
+	RuleDefinition TransformationRuleDefinition `json:"ruleDefinition"`
 	// True if the rule is enabled.
 	Enabled bool `json:"enabled"`
 	// Unique identifier for the transformation rule.
@@ -47,7 +53,7 @@ type TransformationRulesResponse struct {
 }
 
 type TransformationRuleRequest struct {
-	RuleDefinition *TransformationRuleDefinition `json:"ruleDefinition"`
+	RuleDefinition TransformationRuleDefinition `json:"ruleDefinition"`
 	// True if the rule is enabled.
 	Enabled bool `json:"enabled"`
 }
