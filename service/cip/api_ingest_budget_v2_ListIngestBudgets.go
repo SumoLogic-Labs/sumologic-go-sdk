@@ -1,7 +1,7 @@
 package cip
 
 import (
-	"github.com/SumoLogic-Incubator/sumologic-go-sdk/service/cip/types"
+	"github.com/SumoLogic-Labs/sumologic-go-sdk/service/cip/types"
 	"io/ioutil"
 	"net/http"
 	"net/url"
