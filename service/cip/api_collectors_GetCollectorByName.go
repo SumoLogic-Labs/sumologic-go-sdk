@@ -86,6 +86,8 @@ func (a *APIClient) GetCollectorByName(name string) (types.CollectorModel, *http
 		} else if localVarHttpResponse.StatusCode >= 400 {
 			var v types.ErrorResponse
 			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			fmt.Println(localVarHttpResponse.StatusCode)
+			fmt.Println(localVarBody)
 			fmt.Println(err)
 			if err != nil {
 				newErr.error = err.Error()
