@@ -84,7 +84,7 @@ func (a *APIClient) GetCollectorByName(name string) (types.CollectorModel, *http
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
 		} else if localVarHttpResponse.StatusCode >= 400 {
-			var v types.ErrorResponse
+			var v types.LegacyErrorResponse
 			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			fmt.Println(localVarHttpResponse.StatusCode)
 			fmt.Println(string(localVarBody))
@@ -92,11 +92,6 @@ func (a *APIClient) GetCollectorByName(name string) (types.CollectorModel, *http
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
-			}
-			if v.Errors[0].Meta.Reason != "" {
-				newErr.error = v.Errors[0].Message + ": " + v.Errors[0].Meta.Reason
-			} else {
-				newErr.error = v.Errors[0].Message
 			}
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}

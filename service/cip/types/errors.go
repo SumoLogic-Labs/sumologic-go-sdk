@@ -21,3 +21,14 @@ type ErrorResponse struct {
 	// A list of one or more causes of the error.
 	Errors []ErrorDescription `json:"errors"`
 }
+
+type LegacyErrorResponse struct {
+	// Error code
+	Code string `json:"code"`
+	// An identifier for the error; this is unique to the specific API request.
+	Id string `json:"id"`
+	// Error message
+	Message string `json:"message"`
+	// Error status
+	Status int `json:"status"`
+}
