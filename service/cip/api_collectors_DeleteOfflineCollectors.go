@@ -1,7 +1,7 @@
 package cip
 
 import (
-	"github.com/SumoLogic-Incubator/sumologic-go-sdk/service/cip/types"
+	"github.com/SumoLogic-Labs/sumologic-go-sdk/service/cip/types"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -71,16 +71,11 @@ func (a *APIClient) DeleteOfflineCollectors(localVarOptionals *types.DeleteOffli
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode >= 400 {
-			var v types.ErrorResponse
+			var v types.LegacyErrorResponse
 			err = a.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarHttpResponse, newErr
-			}
-			if v.Errors[0].Meta.Reason != "" {
-				newErr.error = v.Errors[0].Message + ": " + v.Errors[0].Meta.Reason
-			} else {
-				newErr.error = v.Errors[0].Message
 			}
 			return localVarHttpResponse, newErr
 		}

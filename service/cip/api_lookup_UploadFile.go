@@ -2,7 +2,7 @@ package cip
 
 import (
 	"fmt"
-	"github.com/SumoLogic-Incubator/sumologic-go-sdk/service/cip/types"
+	"github.com/SumoLogic-Labs/sumologic-go-sdk/service/cip/types"
 	"io"
 	"io/ioutil"
 	"net/http"

@@ -2,7 +2,7 @@ package cip
 
 import (
 	"fmt"
-	"github.com/SumoLogic-Incubator/sumologic-go-sdk/service/cip/types"
+	"github.com/SumoLogic-Labs/sumologic-go-sdk/service/cip/types"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -11,7 +11,7 @@ import (
 
 /*
 UpdateTransformationRule
-Update an existing transformation rule. All properties specified in the request are replaced. Missing properties will remain the same.
+Update an existing transformation rule. All properties specified in the request are replaced.
 	body - Information to update about the transformation rule.
 	id - Identifier of the transformation rule to update.
 */

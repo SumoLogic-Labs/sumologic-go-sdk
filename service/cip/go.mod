@@ -1,4 +1,4 @@
-module github.com/SumoLogic-Incubator/sumologic-go-sdk/service/cip
+module github.com/SumoLogic-Labs/sumologic-go-sdk/service/cip
 
 go 1.16
 
