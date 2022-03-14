@@ -42,7 +42,7 @@ func main() {
 				AccessId:  "<accessId>",
 				AccessKey: "<accessKey>",
 			},
-			BasePath:   "https://api.<regioncode>.sumologic.com/api"
+			BasePath:   "https://api.<regioncode>.sumologic.com/api",
 			HTTPClient: &http.Client{},
 		},
 	}
